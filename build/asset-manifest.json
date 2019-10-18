@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.60b28cbb.chunk.css",
+    "main.css": "/static/css/main.4e1171c5.chunk.css",
     "main.js": "/static/js/main.4ac4a84e.chunk.js",
     "main.js.map": "/static/js/main.4ac4a84e.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.901c749c.js",
@@ -9,10 +9,10 @@
     "static/js/2.5957aecb.chunk.js": "/static/js/2.5957aecb.chunk.js",
     "static/js/2.5957aecb.chunk.js.map": "/static/js/2.5957aecb.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.bc10e81b77468a7f2f0997f90910c6ca.js": "/precache-manifest.bc10e81b77468a7f2f0997f90910c6ca.js",
+    "precache-manifest.ce0f2e15547a5cc6a4d78c08bd3a108f.js": "/precache-manifest.ce0f2e15547a5cc6a4d78c08bd3a108f.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.22a7d4ef.chunk.css.map": "/static/css/2.22a7d4ef.chunk.css.map",
-    "static/css/main.60b28cbb.chunk.css.map": "/static/css/main.60b28cbb.chunk.css.map",
+    "static/css/main.4e1171c5.chunk.css.map": "/static/css/main.4e1171c5.chunk.css.map",
     "static/media/index.css": "/static/media/OSWALD-REGULAR.dab2e777.TTF",
     "static/media/facebook_blanco.png": "/static/media/facebook_blanco.25601767.png",
     "static/media/facebook_rojo.png": "/static/media/facebook_rojo.21da820d.png",
