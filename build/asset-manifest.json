@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.60b28cbb.chunk.css",
+    "main.js": "/static/js/main.4ac4a84e.chunk.js",
+    "main.js.map": "/static/js/main.4ac4a84e.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.901c749c.js",
+    "runtime~main.js.map": "/static/js/runtime~main.901c749c.js.map",
+    "static/css/2.22a7d4ef.chunk.css": "/static/css/2.22a7d4ef.chunk.css",
+    "static/js/2.5957aecb.chunk.js": "/static/js/2.5957aecb.chunk.js",
+    "static/js/2.5957aecb.chunk.js.map": "/static/js/2.5957aecb.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.bc10e81b77468a7f2f0997f90910c6ca.js": "/precache-manifest.bc10e81b77468a7f2f0997f90910c6ca.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.22a7d4ef.chunk.css.map": "/static/css/2.22a7d4ef.chunk.css.map",
+    "static/css/main.60b28cbb.chunk.css.map": "/static/css/main.60b28cbb.chunk.css.map",
+    "static/media/index.css": "/static/media/OSWALD-REGULAR.dab2e777.TTF",
+    "static/media/facebook_blanco.png": "/static/media/facebook_blanco.25601767.png",
+    "static/media/facebook_rojo.png": "/static/media/facebook_rojo.21da820d.png",
+    "static/media/fondo.png": "/static/media/fondo.8b2d21ba.png",
+    "static/media/App.css": "/static/media/trayectoriaDS.65f8a3fb.png",
+    "static/media/instagram_blnco.png": "/static/media/instagram_blnco.3e73a90b.png",
+    "static/media/instagram_rojo.png": "/static/media/instagram_rojo.d6c29b43.png",
+    "static/media/logo.svg": "/static/media/logo.5d5d9eef.svg",
+    "static/media/logoblanco.png": "/static/media/logoblanco.1d4add49.png",
+    "static/media/logorojo.png": "/static/media/logorojo.98a18710.png",
+    "static/media/nombreDS.png": "/static/media/nombreDS.f7ac1383.png",
+    "static/media/perfildaniel.png": "/static/media/perfildaniel.42a0a702.png",
+    "static/media/twitter_blanco.png": "/static/media/twitter_blanco.f5319b28.png",
+    "static/media/twitter_rojo.png": "/static/media/twitter_rojo.07fbe403.png",
+    "static/media/youtube_blanco.png": "/static/media/youtube_blanco.2ca409d3.png",
+    "static/media/youtube_rojo.png": "/static/media/youtube_rojo.c6eec7ee.png"
+  }
+}

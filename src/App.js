@@ -1,0 +1,106 @@
+import React from "react";
+import logo from "./logo.svg";
+import backG from "./resources/fondo.png";
+import "./App.css";
+import NavBar from "./Components/WEBAPP/Navbar/Navbar";
+// import { BrowserRouter, Route, Link } from "react-router-dom";
+// import { Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
+import Landing from "./Components/WEBAPP/Landing/Landing";
+import Trayectoria from "./Components/WEBAPP/Trayectoria/Trayectoria";
+import Blog from "./Components/WEBAPP/Blog/Blog";
+import PorElEdoMex from "./Components/WEBAPP/PorElEdoMex/PorelEdo";
+import Noticias from "./Components/WEBAPP/Noticias/Noticias";
+import Distritos from "./Components/WEBAPP/Distritos/Distritos";
+import Militancia from "./Components/WEBAPP/Militancia/Militancia";
+import Pueblo from "./Components/WEBAPP/Pueblo/Pueblo";
+import DetalleP from "./Components/WEBAPP/Pueblo/DetalleP";
+import DetalleD from "./Components/WEBAPP/Distritos/DetalleD";
+import Login from "./Components/ADMIN/Login/Login";
+
+class App2 extends React.Component {
+  state = {
+    loaded: false
+  };
+
+  componentDidMount = () => {
+    this.setState({ loaded: true });
+  };
+
+  // {/* <Route path="/trayectoria" exact component={Trayectoria} />
+  // <Route path="/blog" exact component={Blog} />
+  // <Route path="/edomex" exact component={PorElEdoMex} />
+  // <Route path="/noticias" exact component={Noticias} />
+  // <Route path="/" exact component={Landing} /> */}
+  render() {
+    return (
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/blog">blog</Link>
+            </li>
+            <li>
+              <Link to="/trayectoria">trayectoria</Link>
+            </li>
+          </ul>
+
+          <hr />
+
+          <Route exact path="/" component={Landing} />
+          <Route path="/blog" component={Blog} />
+          <Route path="/trayectoria" component={Trayectoria} />
+        </div>
+      </Router>
+    );
+  }
+}
+
+// function App() {
+//   return (
+
+//     <Router>
+//       <NavBar></NavBar>
+//       <Switch>
+
+//         <Route path="/trayectoria" component={Trayectoria} />
+//         <Route path="/blog" component={Blog} />
+//         <Route path="/edomex" component={PorElEdoMex} />
+//         <Route path="/noticias" component={Noticias} />
+//         <Route path="/" exact component={Landing} />
+//       </Switch>
+//     </Router>
+//   );
+// }
+
+class App extends React.Component {
+  render() {
+    return (
+      <Router>
+        {/* <NavBar></NavBar> */}
+        {/* <Switch> */}
+
+        <Route path="/admin/" exact component={Login} />
+        <Route path="/trayectoria" exact component={Trayectoria} />
+        <Route path="/blog" exact component={Blog} />
+        {/* <Route path="/noticias" exact component={Noticias} /> */}
+        {/* <Route path="/" exact component={Landing} /> */}
+        <Route exact path="/noticias" component={Noticias} />
+        <Route exact path="/edomex" component={PorElEdoMex} />
+        <Route exact path="/edomex/pueblo" component={Pueblo} />
+        <Route exact path="/edomex/pueblo/:id" component={DetalleP} />
+        <Route exact path="/edomex/militancia" component={Militancia} />
+        <Route exact path="/edomex/distritos" component={Distritos} />
+        <Route exact path="/edomex/distritos/:id" component={DetalleD} />
+        <Route exact path="/" component={Landing} />
+        {/* </Switch> */}
+      </Router>
+    );
+  }
+}
+
+export default App;
