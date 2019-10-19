@@ -13,15 +13,20 @@ export class Login extends Component {
       fetch("http://laravel.danielserrano.com.mx/public/usuario/login", {
         method: "POST",
         body: JSON.stringify({
-          'email': "root@edomex.com",
-          'pass': "root1234"
-          // email: this.state.user,
-          // pass: this.state.pass
+          // 'email': "root@edomex.com",
+          // 'pass': "root1234"
+          email: this.state.user,
+          pass: this.state.pass
         })
       })
         .then(response => response.json())
         .then(responseJSON => {
           console.log(responseJSON);
+          if (responseJSON.status !== "error") {
+            alert('redirigir a dashboard')
+          } else {
+            alert(responseJSON.menssage);
+          }
         })
         .catch(err => { console.log(err); alert('Error, intentarlo más tarde.') })
     } else {
