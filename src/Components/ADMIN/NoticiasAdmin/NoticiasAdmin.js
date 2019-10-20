@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NavbarAdmin from '../NavbarAdmin/NavbarAdmin';
+import Logout from '../Logout/Logout';
 
 export class NoticiasAdmin extends Component {
 
@@ -113,6 +114,7 @@ export class NoticiasAdmin extends Component {
 
                     </div>
                 </div>
+                <Logout redir={this.props.history}></Logout>
             </div>
         )
     }

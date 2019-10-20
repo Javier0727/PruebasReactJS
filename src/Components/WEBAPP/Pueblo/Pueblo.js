@@ -41,7 +41,7 @@ class Pueblo extends Component {
         {this.state.modal ? (
           <div className="modal_cont" style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white" }}>
             <div className="w-50 h-50 bg-danger">
-              <img onError={(event) => event.target.src = DS} src={this.state.video}></img>
+              <img style={{ objectFit: 'contain' }} onError={(event) => event.target.src = DS} src={this.state.video}></img>
               {/* <iframe className='h-100 w-100' src="https://www.youtube.com/embed/7SoYXlIZ7vU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
             </div>
             <div className="close_modal" onClick={() => this.setState({ modal: false, id: 0 })} >

@@ -11,6 +11,10 @@ import instagramR from "../../../resources/instagram_rojo.png";
 import youtubeR from "../../../resources/youtube_rojo.png";
 
 class DetalleD extends Component {
+  state = {
+    distritosData: {}
+  }
+
   componentDidMount = () => {
     console.log(this.props.match.params.id)
     $(".navbar_morena").addClass("nvocolor_rojo");
@@ -20,6 +24,15 @@ class DetalleD extends Component {
     $("#twitterDS").attr("src", twitterR);
     $("#instaDS").attr("src", instagramR);
     $("#ytDS").attr("src", youtubeR);
+
+    fetch("http://laravel.danielserrano.com.mx/public/api/distritos/collection/list")
+      .then(response => response.json())
+      .then(responseJSON => {
+        console.log(responseJSON)
+        this.setState({
+          distritosData: responseJSON.collection
+        })
+      })
   };
 
   render() {
@@ -27,23 +40,34 @@ class DetalleD extends Component {
       <div>
         <div className="topnv" style={{ position: "absolute", top: "-3%" }} ></div>
         <Navbar active={false}></Navbar>
-        <div style={{ paddingTop: "7%" }} className="px-5 mt-md-0  mt-5">
+        {this.state.modal ? (
+          <div className="modal_cont" style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white" }}>
+            <div className="w-75 h-75 bg-danger">
+              <img style={{ objectFit: 'contain' }} onError={(event) => event.target.src = DS} src={this.state.imagen}></img>
+              {/* <iframe className='h-100 w-100' src="https://www.youtube.com/embed/7SoYXlIZ7vU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
+            </div>
+            <div className="close_modal" onClick={() => this.setState({ modal: false, id: 0 })} >
+              X
+            </div>
+          </div>
+        ) : null}
+        <div style={{ paddingTop: "7%" }} className="px-5">
           <div style={{ justifyContent: "center" }} className="row mx-0 mb-4">
             <div className="col-12 px-0">
-              <h2 className="morena_red">DISTRITO</h2>
+              <h2 className="morena_red">PUEBLO ORGANIZADO</h2>
             </div>
-
-            <div className="row flex-nowrap w-100 scroll_custom" style={{ overflowX: "auto", display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
-              {/* {this.state.militanciaData.length > 0 ? (
-                this.state.militanciaData.map(militancia =>
-                  <div key={militancia.id} className="col-12 col-md-8 px-3 mt-3">
-                    <div className="bg-dark" style={{ height: "24rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
-                      <img className='w-100 h-100' alt='MORENA' onError={(event) => event.target.src = DS} src={militancia.img_one}></img>
+            {this.state.distritosData.length != undefined ? (
+              this.state.distritosData.map(distrito =>
+                this.props.match.params.id == distrito.id ? (
+                  distrito.images.map((imagen, i) =>
+                    <div key={i} className="col-12 col-md-5 px-3 mt-3">
+                      <div onClick={() => this.setState({ modal: true, imagen: imagen })} className="bg-dark" style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', backgroundImage: `url(${imagen})`, backgroundPosition: 'center', backgroundSize: 'cover' }} >
+                      </div>
                     </div>
-                  </div>
-                )
-              ) : (null)} */}
-            </div>
+                  )
+                ) : (null)
+              )
+            ) : (null)}
           </div>
         </div>
         <Footer></Footer>

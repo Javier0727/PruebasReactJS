@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NavbarAdmin from '../NavbarAdmin/NavbarAdmin';
 import $ from 'jquery';
+import Logout from '../Logout/Logout';
 
 export class LandingAdmin extends Component {
     state = {
@@ -88,7 +89,6 @@ export class LandingAdmin extends Component {
         this._getData();
     }
 
-
     render() {
         return (
             <div className='container-fluid'>
@@ -158,6 +158,7 @@ export class LandingAdmin extends Component {
 
                     </div>
                 </div>
+                <Logout redir={this.props.history}></Logout>
             </div >
         )
     }
