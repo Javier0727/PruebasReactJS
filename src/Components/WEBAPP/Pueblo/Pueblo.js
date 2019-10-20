@@ -58,7 +58,7 @@ class Pueblo extends Component {
               this.state.listadoData.map(pueblo =>
                 <div key={pueblo.id} className="col-12 col-md-5 px-3 mt-3">
                   <div onClick={() => this.setState({ modal: true, id: pueblo.id, video: pueblo.img_one })} className="bg-dark" style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', backgroundImage: `url(${pueblo.img_one})`, backgroundPosition: 'center', backgroundSize: 'cover' }} >
-                    Pueblo Organizado {pueblo.id}
+                    {/* Pueblo Organizado {pueblo.id} */}
                   </div>
                 </div>
               )

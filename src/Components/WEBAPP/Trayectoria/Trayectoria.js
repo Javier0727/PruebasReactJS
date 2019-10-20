@@ -9,7 +9,8 @@ import Footer from "../Footer/Footer";
 
 export default class Trayectoria extends Component {
   state = {
-    trayData: {}
+    trayData: {},
+    mediaData: {}
   }
 
   componentDidMount = () => {
@@ -22,6 +23,17 @@ export default class Trayectoria extends Component {
       .catch(err => {
         console.log(err);
       });
+    fetch(`http://laravel.danielserrano.com.mx/public/api/content`)
+      .then(response => response.json())
+      .then(responseJSON => {
+        console.log(responseJSON.Content.length);
+        this.setState({
+          mediaData: responseJSON.Content[responseJSON.Content.length -1]
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -30,10 +42,7 @@ export default class Trayectoria extends Component {
       <div>
         <Navbar active={true}></Navbar>
         <div className="cont-vid bg_perfilDaniel topnv">
-          <div
-            className="w-100 h-100"
-            style={{ position: "absolute", backgroundColor: "#9417259e" }}
-          >
+          <div className="w-100 h-100" style={{ position: "absolute", backgroundColor: "#9417259e" }} >
             <div className="ds_logo_trayectoria">
               <img className="w-100 h-100 img-contain" src={logoDS}></img>
             </div>
@@ -60,128 +69,6 @@ export default class Trayectoria extends Component {
             ) : (null)
             }
 
-            {/* <div className="row">
-              <div className="col-2 morena_red">2005-2006</div>
-              <div className="col-10">
-                Responsable político de la campaña a la Presidencia de la
-                República de Andrés Manuel López Obrador en el Distrito XV
-                Federal.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2008</div>
-              <div className="col-10">
-                Subsecretario para el Estado de Bienestar del Gabinete del
-                Gobierno Legítimo en México.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2010-2011</div>
-              <div className="col-10">
-                Responsable político de la campaña a gobernador de Alejandro
-                Encinas en el Distrito XII Federal.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2011-2013</div>
-              <div className="col-10">
-                Responsable de la Asamblea Constitutiva de morena en el Estado
-                de México.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2012</div>
-              <div className="col-10">
-                Integrante del Equipo Nacional de Capacitación Electoral.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2012-2015</div>
-              <div className="col-10">
-                Miembro del Consejo Estatal de morena.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2012-2015</div>
-              <div className="col-10">
-                Secretario de Organización del Comité Ejecutivo Estatal
-                (2012-2015), de morena en el Estado de México.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2012-2015</div>
-              <div className="col-10">
-                Miembro del Consejo Nacional de morena.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2014-2016</div>
-              <div className="col-10">
-                Representante de morena ante el Instituto Electoral del Estado
-                de México.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2005-2006</div>
-              <div className="col-10">
-                Responsable político de la campaña a la Presidencia de la
-                República de Andrés Manuel López Obrador en el Distrito XV
-                Federal.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2008</div>
-              <div className="col-10">
-                Subsecretario para el Estado de Bienestar del Gabinete del
-                Gobierno Legítimo en México.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2010-2011</div>
-              <div className="col-10">
-                Responsable político de la campaña a gobernador de Alejandro
-                Encinas en el Distrito XII Federal.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2011-2013</div>
-              <div className="col-10">
-                Responsable de la Asamblea Constitutiva de morena en el Estado
-                de México.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2012</div>
-              <div className="col-10">
-                Integrante del Equipo Nacional de Capacitación Electoral.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2012-2015</div>
-              <div className="col-10">
-                Miembro del Consejo Estatal de morena.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2012-2015</div>
-              <div className="col-10">
-                Secretario de Organización del Comité Ejecutivo Estatal
-                (2012-2015), de morena en el Estado de México.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2012-2015</div>
-              <div className="col-10">
-                Miembro del Consejo Nacional de morena.
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2 morena_red">2014-2016</div>
-              <div className="col-10">
-                Representante de morena ante el Instituto Electoral del Estado
-                de México.
-              </div>
-            </div> */}
             {/* 27 */}
           </div>
           <div className="col-md-6 bg_trayectoriaDS"></div>
@@ -194,21 +81,15 @@ export default class Trayectoria extends Component {
             </div>
           </div>
           <div className="row mx-0">
-            <div
-              className="col-md-9 col-12 bg-danger cursor_pointer"
-              style={{ height: "20rem" }}
-            >
+            <div className="col-md-9 col-12 bg-danger cursor_pointer" style={{ height: "20rem", backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage: `url(https://img.youtube.com/vi/${this.state.mediaData.video_trayectoria !== undefined ? (this.state.mediaData.video_trayectoria.split("=")[1]) : ("")}/maxresdefault.jpg)`, boxShadow: '0px 0px 5px 0px gray' }} >
               {/* a */}
             </div>
-            <div
-              className="col-md-3 col-12 px-0 px-md-3 mt-2 mt-md-0"
-              style={{ height: "20rem" }}
-            >
+            <div className="col-md-3 col-12 px-0 px-md-3 mt-2 mt-md-0" style={{ height: "20rem" }} >
               <div className="row mx-0 h-50 pb-1">
-                <div className="col-12 bg-info cursor_pointer">{/* aa */}</div>
+                <div className="col-12 bg-danger cursor_pointer" style={{ backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage: `url(${this.state.mediaData.img_trayectoria_one})`, boxShadow: '0px 0px 5px 0px gray' }}>{/* aa */}</div>
               </div>
               <div className="row mx-0 h-50 pt-1">
-                <div className="col-12 bg-success cursor_pointer">
+                <div className="col-12 bg-danger cursor_pointer" style={{ backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage: `url(${this.state.mediaData.img_trayectoria_two})`, boxShadow: '0px 0px 5px 0px gray' }}>
                   {/* bb */}
                 </div>
               </div>
@@ -216,7 +97,7 @@ export default class Trayectoria extends Component {
           </div>
         </div>
         <Footer></Footer>
-      </div>
+      </div >
     );
   }
 }

@@ -6,7 +6,22 @@ import YouTube from "react-youtube";
 import Footer from "../Footer/Footer";
 
 export class Landing extends Component {
-  componentDidMount = () => {};
+  state = {
+    mediaData: {}
+  }
+  componentDidMount = () => {
+    fetch(`http://laravel.danielserrano.com.mx/public/api/content`)
+      .then(response => response.json())
+      .then(responseJSON => {
+        console.log(responseJSON);
+        this.setState({
+          mediaData: responseJSON.Content[responseJSON.Content.length -1]
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   _onReady(event) {
     // console.log(event);
     event.target.playVideo();
@@ -21,18 +36,23 @@ export class Landing extends Component {
         loop: 1
       }
     };
+    console.log(this.state.mediaData.video_home)
     return (
       <div>
         <Navbar active={true}></Navbar>
         <div className="cont-vid topnv" style={{ overflow: "hidden" }}>
-          <YouTube
-            className="h-100 w-100"
-            opts={opts}
-            videoId="7SoYXlIZ7vU"
-            containerClassName="h-100 w-100 position-absolute"
-            onReady={this._onReady}
-            onEnd={this._onReady}
-          />
+          {this.state.mediaData.video_home !== undefined ? (
+
+            <YouTube
+              className="h-100 w-100"
+              opts={opts}
+              // videoId="123123"
+              videoId={this.state.mediaData.video_home.split("=")[1]}
+              containerClassName="h-100 w-100 position-absolute"
+              onReady={this._onReady}
+              onEnd={this._onReady}
+            />
+          ) : (null)}
           {/* <video style={{ position: 'absolute' }} className='h-100 w-100' src={vid} autoPlay loop></video> */}
           <div
             className="w-100 h-100"

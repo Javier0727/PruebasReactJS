@@ -29,6 +29,7 @@ export class Login extends Component {
           console.log(responseJSON);
           if (responseJSON.status !== "error") {
             // alert('redirigir a dashboard')
+            console.log(this.props);
             localStorage.setItem('token', responseJSON.token);
             this.props.history.push('/admin/danielserrano');
           } else {

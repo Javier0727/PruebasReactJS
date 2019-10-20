@@ -8,7 +8,6 @@ export class LandingAdmin extends Component {
         videoTrayectoria: '',
         imgTrayectoria1: '',
         imgTrayectoria2: ''
-
     }
 
     _getData = () => {
@@ -42,11 +41,8 @@ export class LandingAdmin extends Component {
 
                 fetch(`http://laravel.danielserrano.com.mx/public/api/content/create`, {
                     method: 'POST',
-                    mode: 'no-cors',
-                    headers: new Headers({
-                        'Authorization': `${localStorage.getItem('token')}`,
-                    }),
                     body: JSON.stringify({
+                        "token": localStorage.getItem('token'),
                         "video_home": this.state.videoHome,
                         "video_trayectoria": this.state.videoTrayectoria,
                         "img_trayectoria_one": this.state.imgTrayectoria1.split('base64,')[1],
@@ -98,7 +94,7 @@ export class LandingAdmin extends Component {
             <div className='container-fluid'>
                 <NavbarAdmin></NavbarAdmin>
                 <div className='row mb-5' style={{ justifyContent: 'center' }}>
-                    <div className='col-md-6 col-10'>
+                    <div className='col-md-6 col-10' style={{ boxShadow: '0px 0px 5px 0px gray', paddingBottom: '1rem' }}>
                         <div className='row mt-5'>
                             <div className='col-12 mt-5 h4'>
                                 Video Home
