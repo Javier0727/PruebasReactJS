@@ -16,7 +16,7 @@ class DetalleD extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props.match.params.id)
+    // console.log(this.props.match.params.id)
     $(".navbar_morena").addClass("nvocolor_rojo");
     $(".navbar_morena img").attr("src", logoRojo);
 
