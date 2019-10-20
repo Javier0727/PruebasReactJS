@@ -8,6 +8,11 @@ export class Login extends Component {
     pass: ""
   };
 
+  componentDidMount() {
+    // console.log(this.props)
+  }
+
+
   _login = () => {
     if (this.state.user !== "" && this.state.pass !== "") {
       fetch("http://laravel.danielserrano.com.mx/public/usuario/login", {
@@ -23,7 +28,9 @@ export class Login extends Component {
         .then(responseJSON => {
           console.log(responseJSON);
           if (responseJSON.status !== "error") {
-            alert('redirigir a dashboard')
+            // alert('redirigir a dashboard')
+            localStorage.setItem('token', responseJSON.token);
+            this.props.history.push('/admin/danielserrano');
           } else {
             alert(responseJSON.menssage);
           }

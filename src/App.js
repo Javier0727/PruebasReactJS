@@ -18,6 +18,11 @@ import Pueblo from "./Components/WEBAPP/Pueblo/Pueblo";
 import DetalleP from "./Components/WEBAPP/Pueblo/DetalleP";
 import DetalleD from "./Components/WEBAPP/Distritos/DetalleD";
 import Login from "./Components/ADMIN/Login/Login";
+import TrayectoriaAdmin from "./Components/ADMIN/TayectoriaAdmin/TrayectoriaAdmin";
+import BlogAdmin from "./Components/ADMIN/BlogAdmin/BlogAdmin";
+import LandingAdmin from "./Components/ADMIN/LandingAdmin/LandingAdmin";
+import PorelEdoAdmin from "./Components/ADMIN/PorelEdoAdmin/PorelEdoAdmin";
+import NoticiasAdmin from "./Components/ADMIN/NoticiasAdmin/NoticiasAdmin";
 
 class App2 extends React.Component {
   state = {
@@ -84,7 +89,13 @@ class App extends React.Component {
         {/* <NavBar></NavBar> */}
         {/* <Switch> */}
 
-        <Route path="/admin/" exact component={Login} />
+        <Route path="/admin" exact component={Login} />
+        <Route path="/admin/trayectoria" exact component={TrayectoriaAdmin} />
+        <Route path="/admin/blog" exact component={BlogAdmin} />
+        <Route path="/admin/danielserrano" exact component={LandingAdmin} />
+        <Route path="/admin/edomex" exact component={PorelEdoAdmin} />
+        <Route path="/admin/noticias" exact component={NoticiasAdmin} />
+
         <Route path="/trayectoria" exact component={Trayectoria} />
         <Route path="/blog" exact component={Blog} />
         {/* <Route path="/noticias" exact component={Noticias} /> */}
