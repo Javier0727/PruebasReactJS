@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NavbarAdmin from '../NavbarAdmin/NavbarAdmin';
 import Logout from '../Logout/Logout';
+import UserControlBtn from '../UserControl/UserControlBtn';
 
 export class NoticiasAdmin extends Component {
 
@@ -114,6 +115,7 @@ export class NoticiasAdmin extends Component {
 
                     </div>
                 </div>
+                <UserControlBtn redir={this.props.history}></UserControlBtn>
                 <Logout redir={this.props.history}></Logout>
             </div>
         )

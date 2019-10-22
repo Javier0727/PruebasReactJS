@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NavbarAdmin from '../NavbarAdmin/NavbarAdmin';
 import $ from 'jquery';
 import Logout from '../Logout/Logout';
+import UserControlBtn from '../UserControl/UserControlBtn';
 
 export class LandingAdmin extends Component {
     state = {
@@ -158,6 +159,7 @@ export class LandingAdmin extends Component {
 
                     </div>
                 </div>
+                <UserControlBtn redir={this.props.history}></UserControlBtn>
                 <Logout redir={this.props.history}></Logout>
             </div >
         )

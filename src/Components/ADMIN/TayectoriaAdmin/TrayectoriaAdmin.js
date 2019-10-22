@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NavbarAdmin from '../NavbarAdmin/NavbarAdmin';
 import Logout from '../Logout/Logout';
+import UserControlBtn from '../UserControl/UserControlBtn';
 
 export class TrayectoriaAdmin extends Component {
     state = {
@@ -67,6 +68,7 @@ export class TrayectoriaAdmin extends Component {
 
                     </div>
                 </div>
+                <UserControlBtn redir={this.props.history}></UserControlBtn>
                 <Logout redir={this.props.history}></Logout>
             </div>
         )

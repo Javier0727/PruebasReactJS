@@ -23,6 +23,7 @@ import BlogAdmin from "./Components/ADMIN/BlogAdmin/BlogAdmin";
 import LandingAdmin from "./Components/ADMIN/LandingAdmin/LandingAdmin";
 import PorelEdoAdmin from "./Components/ADMIN/PorelEdoAdmin/PorelEdoAdmin";
 import NoticiasAdmin from "./Components/ADMIN/NoticiasAdmin/NoticiasAdmin";
+import UserControl from "./Components/ADMIN/UserControl/UserControl";
 
 class App2 extends React.Component {
   state = {
@@ -95,6 +96,7 @@ class App extends React.Component {
         <Route path="/admin/danielserrano" exact component={LandingAdmin} />
         <Route path="/admin/edomex" exact component={PorelEdoAdmin} />
         <Route path="/admin/noticias" exact component={NoticiasAdmin} />
+        <Route path="/admin/usuarios" exact component={UserControl} />
 
         <Route path="/trayectoria" exact component={Trayectoria} />
         <Route path="/blog" exact component={Blog} />
