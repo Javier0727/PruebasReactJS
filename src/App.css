@@ -58,24 +58,27 @@ img {
 
 .navbar_morena {
   position: fixed;
-  width: fit-content;
+  /* width: fit-content; */
   left: 0;
   right: 0;
   top: 0;
-  margin: 1% auto;
+  /* margin: 1% auto; */
   z-index: 99;
   transition: 500ms;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   /* color: black; */
+  /* display: flex; */
+  justify-content: center;
 }
 
 .navbar_morena a {
   color: rgb(255, 255, 255);
   text-decoration: none !important;
   font-family: "owsald-light" !important;
-  font-size: larger;
+  /* font-size: larger; */
+  font-size: 1rem;
   transition: 500ms;
   font-weight: bolder;
 }
@@ -126,6 +129,10 @@ img {
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
+}
+
+.nvocolor_rojo {
+  background-color: white;
 }
 
 .nvocolor_rojo a {
@@ -186,4 +193,9 @@ img {
 
 body {
   background-color: #e1e2e1;
+}
+
+#footer_morena {
+  background-color: transparent;
+  transition: 500ms;
 }

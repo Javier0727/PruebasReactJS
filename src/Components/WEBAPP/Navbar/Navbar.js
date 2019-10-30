@@ -24,7 +24,7 @@ class Navbar extends React.Component {
   };
 
   _scrolleo = () => {
-    $(document).scroll(function() {
+    $(document).scroll(function () {
       var windowTop = $(document).scrollTop();
       var windowBottom = windowTop + window.innerHeight;
       var elementPositionTop = $(".topnv").offset().top;
@@ -38,7 +38,11 @@ class Navbar extends React.Component {
         $("#twitterDS").attr("src", twitterB);
         $("#instaDS").attr("src", instagramB);
         $("#ytDS").attr("src", youtubeB);
+        $("#footer_morena").css("background-color", "transparent");
+
       } else {
+
+        $("#footer_morena").css("background-color", "white");
         $(".txt-footer").css("color", "#941725");
         $(".navbar_morena").addClass("nvocolor_rojo");
         $(".navbar_morena img").attr("src", logoRojo);
@@ -68,19 +72,19 @@ class Navbar extends React.Component {
       //     </div>
       // </nav>
       <div className="navbar_morena">
-        <Link className="p-3" to="/trayectoria">
+        <Link className="px-3" to="/trayectoria">
           TRAYECTORIA
         </Link>
-        <Link className="p-3" to="/blog">
+        <Link className="px-3" to="/blog">
           BLOG
         </Link>
-        <Link className="p-3" to="/">
+        <Link className="px-3" to="/">
           <img style={{ width: "5rem" }} src={logoDS}></img>
         </Link>
-        <Link className="p-3" to="/edomex">
+        <Link className="px-3" to="/edomex">
           POR EL EDOMEX
         </Link>
-        <Link className="p-3" to="/noticias">
+        <Link className="px-3" to="/noticias">
           NOTICIAS
         </Link>
       </div>

@@ -12,7 +12,7 @@ import youtubeR from "../../../resources/youtube_rojo.png";
 export class Footer extends Component {
   render() {
     return (
-      <div className="w-100" style={{ position: "fixed", bottom: "0", height: "5rem" }}>
+      <div id="footer_morena" className="w-100" style={{ position: "fixed", bottom: "0", height: "5rem" }}>
         <div className="row mx-0 py-4 h-100">
           <div className="col-md-2 col-12 h-100" style={{
             display: "flex",
