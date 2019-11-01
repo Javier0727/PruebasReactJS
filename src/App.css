@@ -110,7 +110,7 @@ img {
 }
 
 .ds_logo_trayectoria {
-  width: 20rem;
+  width: 90%;
   position: absolute;
   /* right: 5%; */
   left: 5%;
@@ -132,7 +132,8 @@ img {
 }
 
 .nvocolor_rojo {
-  background-color: white;
+  background-color: #cdcdcd;
+  box-shadow: 0px 2px 7px -3px grey;
 }
 
 .nvocolor_rojo a {
@@ -140,7 +141,7 @@ img {
 }
 
 .modal_cont {
-  background-color: #0000008a;
+  background-color: #000000db;
   position: fixed;
   height: 100vh;
   width: 100%;
@@ -192,10 +193,59 @@ img {
 }
 
 body {
-  background-color: #e1e2e1;
+  /* background-color: #e1e2e1; */
+  background-image: linear-gradient(140deg, #cdcdcd, #f1f0f0);
 }
 
 #footer_morena {
   background-color: transparent;
   transition: 500ms;
+}
+
+.cont-blog:hover {
+  background-image: linear-gradient(140deg, rgba(148, 23, 38, 0.85), rgba(26, 15, 18, 0.85));
+}
+
+.degradado {
+  background-image: linear-gradient(140deg, rgba(148, 23, 38, 0.85), rgba(26, 15, 18, 0.85));
+}
+
+.degradado_solid {
+  background-image: linear-gradient(140deg, rgb(148, 23, 38), rgb(26, 15, 18));
+}
+
+.txt_edo {
+  font-size: 3.7rem;
+  transition: 700ms;
+}
+
+.txt_edo:hover {
+  font-size: 3.9rem !important;
+}
+
+.noticia_cont {
+  top: 0;
+  transition: 700ms;
+}
+
+.noticia_cont:hover {
+  top: -10px !important;
+}
+
+.navbarActive {
+  border-bottom: 2px solid #96050fab;
+}
+
+.navbarActiveW {
+  border-bottom: 2px solid #ffffffab;
+}
+
+.delete {
+  color: black;
+  background-color: initial;
+}
+
+.delete:hover {
+  color: white;
+  background-image: linear-gradient(140deg, rgba(148, 23, 38, 0.85), rgba(26, 15, 18, 0.85));
 }

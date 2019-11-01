@@ -12,14 +12,18 @@ import instagramB from "../../../resources/instagram_blnco.png";
 import instagramR from "../../../resources/instagram_rojo.png";
 import youtubeB from "../../../resources/youtube_blanco.png";
 import youtubeR from "../../../resources/youtube_rojo.png";
-
+// border-bottom: 2px solid #96050fab;
 class Navbar extends React.Component {
   state = {
-    validacion: false
+    validacion: false,
+    active: ''
   };
   componentDidMount = () => {
     var { active } = this.props;
     this._scrolleo();
+    this.setState({
+      active: window.location.pathname
+    })
     // console.log(active);
   };
 
@@ -39,10 +43,13 @@ class Navbar extends React.Component {
         $("#instaDS").attr("src", instagramB);
         $("#ytDS").attr("src", youtubeB);
         $("#footer_morena").css("background-color", "transparent");
+        $("#footer_morena").css("box-shadow", "none");
 
       } else {
 
-        $("#footer_morena").css("background-color", "white");
+        $("#footer_morena").css("background-color", "#cdcdcd");
+        $("#footer_morena").css("box-shadow", "0px -2px 7px -3px grey");
+
         $(".txt-footer").css("color", "#941725");
         $(".navbar_morena").addClass("nvocolor_rojo");
         $(".navbar_morena img").attr("src", logoRojo);
@@ -72,19 +79,19 @@ class Navbar extends React.Component {
       //     </div>
       // </nav>
       <div className="navbar_morena">
-        <Link className="px-3" to="/trayectoria">
+        <Link className={`px-3 ${this.state.active === "/trayectoria" ? ("navbarActive") : ("")}`} to="/trayectoria">
           TRAYECTORIA
         </Link>
-        <Link className="px-3" to="/blog">
+        <Link className={`px-3 ${this.state.active === "/blog" ? ("navbarActive") : ("")}`} to="/blog">
           BLOG
         </Link>
-        <Link className="px-3" to="/">
+        <Link className={`px-3 ${this.state.active === "/" ? ("navbarActiveW") : ("")}`} to="/">
           <img style={{ width: "5rem" }} src={logoDS}></img>
         </Link>
-        <Link className="px-3" to="/edomex">
+        <Link className={`px-3 ${this.state.active === "/edomex" || this.state.active === "/edomex/distritos" || this.state.active === "/edomex/militancia" || this.state.active === "/edomex/pueblo" ? ("navbarActive") : ("")}`} to="/edomex">
           POR EL EDOMEX
         </Link>
-        <Link className="px-3" to="/noticias">
+        <Link className={`px-3 ${this.state.active === "/noticias" ? ("navbarActive") : ("")}`} to="/noticias">
           NOTICIAS
         </Link>
       </div>

@@ -12,10 +12,36 @@ export class PorelEdoAdmin extends Component {
         distritoId: '',
         distritoNum: '',
         distritoTitulo: '',
-        distritoNew: ''
+        distritoNew: '',
+        puebloData: [],
+        militanciaData: [],
+        distritosData: [],
+        distritosImgData: []
     }
 
     componentDidMount() {
+
+        fetch("http://laravel.danielserrano.com.mx/public/api/pueblo")
+            .then(response => response.json())
+            .then(responseJSON => {
+                console.log(responseJSON)
+                this.setState({
+                    puebloData: responseJSON.Pueblo
+                })
+            })
+            .catch(err => console.log(err));
+
+        fetch("http://laravel.danielserrano.com.mx/public/api/militancia")
+            .then(response => response.json())
+            .then(responseJSON => {
+                console.log(responseJSON)
+                this.setState({
+                    militanciaData: responseJSON.Militancia
+                })
+            })
+            .catch(err => console.log(err));
+
+
         fetch("http://laravel.danielserrano.com.mx/public/api/distritos")
             .then(response => response.json())
             .then(responseJSON => {
@@ -24,7 +50,17 @@ export class PorelEdoAdmin extends Component {
                     distritosList: responseJSON.Distritos
                 })
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
+
+        fetch("http://laravel.danielserrano.com.mx/public/api/distritos/img/list")
+            .then(response => response.json())
+            .then(responseJSON => {
+                console.log(responseJSON)
+                this.setState({
+                    distritosImgData: responseJSON.Imgdistritos
+                })
+            })
+            .catch(err => console.log(err));
     }
 
 
@@ -200,14 +236,6 @@ export class PorelEdoAdmin extends Component {
     render() {
         return (
             <div className='container-fluid'>
-                {/* <div className='col-12 mt-5 h4'>
-                                Título
-                                <input className='form-control' onChange={(event) => this.setState({ titulo: event.target.value })} type='text'></input>
-                            </div> */}
-                {/* <div className='col-12 mt-5 h4'>
-                                Enlace
-                                <input className='form-control' onChange={(event) => this.setState({ enlace: event.target.value })} type='text'></input>
-                            </div> */}
                 <NavbarAdmin></NavbarAdmin>
                 <div className='row mb-5' style={{ justifyContent: 'center' }}>
                     <div className='col-md-6 col-10' style={{ boxShadow: '0px 0px 5px 0px gray', paddingBottom: '1rem' }}>
@@ -215,7 +243,7 @@ export class PorelEdoAdmin extends Component {
                             <div className='col-12'>
                                 <div className='h2 mt-5' style={{ color: '#941725' }}>Pueblo Organizado</div>
                                 <label htmlFor='img1' className='w-100'>
-                                    <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgPueblo !== '' ? (this.state.imgPueblo) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain' }}>
+                                    <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgPueblo !== '' ? (this.state.imgPueblo) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain', backgroundColor: 'white', }}>
                                         {this.state.imgPueblo === '' ? (
                                             'Selecciona una imagen'
                                         ) : (null)}
@@ -229,11 +257,24 @@ export class PorelEdoAdmin extends Component {
                                 <div onClick={() => this._createPueblo()} className='btn btn-danger' style={{ cursor: 'pointer' }}>Guardar</div>
                             </div>
                         </div>
+
+                        <div className='row mt-3'>
+                            {this.state.puebloData.length > 0 ? (
+                                this.state.puebloData.map(pueblo =>
+                                    pueblo.status === 1 ? (
+                                        <div onClick={() => console.log(pueblo.id)} key={pueblo.id} className='col-3 d-flex justify-content-center mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                            <img src={pueblo.img_one} style={{ width: '5rem' }}></img>
+                                        </div>
+                                    ) : (null)
+                                )
+                            ) : (null)}
+                        </div>
+
                         <div className='row mt-2'>
                             <div className='col-12'>
                                 <div className='h2 mt-5' style={{ color: '#941725' }}>Con la Militancia</div>
                                 <label htmlFor='img2' className='w-100'>
-                                    <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgMilitancia !== '' ? (this.state.imgMilitancia) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain' }}>
+                                    <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgMilitancia !== '' ? (this.state.imgMilitancia) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain', backgroundColor: 'white', }}>
                                         {this.state.imgMilitancia === '' ? (
                                             'Selecciona una imagen'
                                         ) : (null)}
@@ -247,6 +288,19 @@ export class PorelEdoAdmin extends Component {
                                 <div onClick={() => this._createMilitancia()} className='btn btn-danger' style={{ cursor: 'pointer' }}>Guardar</div>
                             </div>
                         </div>
+
+                        <div className='row mt-3'>
+                            {this.state.militanciaData.length > 0 ? (
+                                this.state.militanciaData.map(militancia =>
+                                    militancia.status === 1 ? (
+                                        <div onClick={() => console.log(militancia.id)} key={militancia.id} className='col-3 d-flex justify-content-center mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                            <img src={militancia.img_one} style={{ width: '5rem', height: '7rem' }}></img>
+                                        </div>
+                                    ) : (null)
+                                )
+                            ) : (null)}
+                        </div>
+
                         <div className='row mt-2'>
                             <div className='col-12'>
                                 <div className='h2 mt-5' style={{ color: '#941725' }}>Distritos</div>
@@ -269,7 +323,7 @@ export class PorelEdoAdmin extends Component {
                                     ) : (
                                             <div className='mt-2'>
                                                 <label htmlFor='img3' className='w-100'>
-                                                    <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgDistrito !== '' ? (this.state.imgDistrito) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain' }}>
+                                                    <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgDistrito !== '' ? (this.state.imgDistrito) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain', backgroundColor: 'white', }}>
                                                         {this.state.imgDistrito === '' ? (
                                                             'Selecciona una imagen'
                                                         ) : (null)}
@@ -279,14 +333,6 @@ export class PorelEdoAdmin extends Component {
                                             </div>
                                         )}
                                 </div>
-                                {/* <label htmlFor='img2' className='w-100'>
-                                    <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgMilitancia !== '' ? (this.state.imgMilitancia) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain' }}>
-                                        {this.state.imgMilitancia === '' ? (
-                                            'Selecciona una imagen'
-                                        ) : (null)}
-                                    </div>
-                                </label>
-                                <input id='img2' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 2)} type='file'></input> */}
                             </div>
                         </div>
                         {this.state.distritoId === '-1' ? (
@@ -302,7 +348,32 @@ export class PorelEdoAdmin extends Component {
                                     </div>
                                 </div>
                             )}
+                        <div className='row mt-3'>
+                            {this.state.distritosList.length > 0 ? (
+                                this.state.distritosList.map(distrito =>
+                                    distrito.status === 1 ? (
+                                        <div onClick={() => console.log(distrito.id)} key={distrito.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                            {distrito.title}
+                                        </div>
+                                    ) : (null)
+                                )
+                            ) : (null)}
+                        </div>
 
+                        <hr />
+
+                        <div className='row mt-3'>
+                            {this.state.distritosImgData.length > 0 ? (
+                                this.state.distritosImgData.map(distImg =>
+                                    distImg.status === 1 ? (
+                                        <div onClick={() => console.log(distImg.id)} key={distImg.id} className='col-3 d-flex position-relative align-items-center justify-content-center mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                            <img src={distImg.img_distrito} style={{ width: '5rem', height: '7rem' }}></img>
+                                            <div className='position-absolutes'>Distrito {distImg.numero_distro}</div>
+                                        </div>
+                                    ) : (null)
+                                )
+                            ) : (null)}
+                        </div>
                     </div>
                 </div>
                 <UserControlBtn redir={this.props.history}></UserControlBtn>

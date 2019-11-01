@@ -40,7 +40,7 @@ class Pueblo extends Component {
         <Navbar active={false}></Navbar>
         {this.state.modal ? (
           <div className="modal_cont" style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white" }}>
-            <div className="w-50 h-50 bg-danger">
+            <div className="w-75 h-75 degradado_solid">
               <img style={{ objectFit: 'contain' }} onError={(event) => event.target.src = DS} src={this.state.video}></img>
               {/* <iframe className='h-100 w-100' src="https://www.youtube.com/embed/7SoYXlIZ7vU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
             </div>
@@ -52,15 +52,16 @@ class Pueblo extends Component {
         <div style={{ paddingTop: "7%" }} className="px-5">
           <div style={{ justifyContent: "center" }} className="row mx-0 mb-4">
             <div className="col-12 px-0">
-              <h2 className="morena_red">PUEBLO ORGANIZADO</h2>
+              <h1 className="morena_red">PUEBLO ORGANIZADO</h1>
             </div>
             {this.state.listadoData.length != undefined ? (
               this.state.listadoData.map(pueblo =>
-                <div key={pueblo.id} className="col-12 col-md-5 px-3 mt-3">
-                  <div onClick={() => this.setState({ modal: true, id: pueblo.id, video: pueblo.img_one })} className="bg-dark" style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', backgroundImage: `url(${pueblo.img_one})`, backgroundPosition: 'center', backgroundSize: 'cover' }} >
-                    {/* Pueblo Organizado {pueblo.id} */}
+                pueblo.status === 1 ? (
+                  <div key={pueblo.id} className="col-12 col-md-5 px-3 mt-3">
+                    <div onClick={() => this.setState({ modal: true, id: pueblo.id, video: pueblo.img_one })} className="bg-dark" style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', backgroundImage: `url(${pueblo.img_one})`, backgroundPosition: 'center', backgroundSize: 'cover' }} >
+                    </div>
                   </div>
-                </div>
+                ) : (null)
               )
             ) : (null)}
           </div>

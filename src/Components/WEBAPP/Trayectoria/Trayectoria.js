@@ -42,7 +42,7 @@ export default class Trayectoria extends Component {
       <div>
         <Navbar active={true}></Navbar>
         <div className="cont-vid bg_perfilDaniel topnv">
-          <div className="w-100 h-100" style={{ position: "absolute", backgroundColor: "#9417259e" }} >
+          <div className="w-100 h-100 degradado" style={{ position: "absolute", }} >
             <div className="ds_logo_trayectoria">
               <img className="w-100 h-100 img-contain" src={logoDS}></img>
             </div>
@@ -77,14 +77,14 @@ export default class Trayectoria extends Component {
         <div className="my-5 px-5">
           <div className="row mx-0 mb-4">
             <div className="col-12 px-0">
-              <h2 className="morena_red">GALERIA</h2>
+              <h1 className="morena_red">GALERIA</h1>
             </div>
           </div>
-          <div className="row mx-0">
-            <div className="col-md-9 col-12 bg-danger cursor_pointer" style={{ height: "20rem", backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage: `url(https://img.youtube.com/vi/${this.state.mediaData.video_trayectoria !== undefined ? (this.state.mediaData.video_trayectoria.split("=")[1]) : ("")}/maxresdefault.jpg)`, boxShadow: '0px 0px 5px 0px gray' }} >
+          <div className="row mx-0 mb-5">
+            <div className="col-md-9 col-12 bg-danger cursor_pointer" style={{ height: "28rem", backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage: `url(https://img.youtube.com/vi/${this.state.mediaData.video_trayectoria !== undefined ? (this.state.mediaData.video_trayectoria.split("=")[1]) : ("")}/maxresdefault.jpg)`, boxShadow: '0px 0px 5px 0px gray' }} >
               {/* a */}
             </div>
-            <div className="col-md-3 col-12 px-0 px-md-3 mt-2 mt-md-0" style={{ height: "20rem" }} >
+            <div className="col-md-3 col-12 px-0 px-md-3 mt-2 mt-md-0" style={{ height: "28rem" }} >
               <div className="row mx-0 h-50 pb-1">
                 <div className="col-12 bg-danger cursor_pointer" style={{ backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage: `url(${this.state.mediaData.img_trayectoria_one})`, boxShadow: '0px 0px 5px 0px gray' }}>{/* aa */}</div>
               </div>

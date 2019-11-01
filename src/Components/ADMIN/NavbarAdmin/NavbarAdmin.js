@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import logoDS from "../../../resources/Página Web/iconos/logoblanco.png";
 import logoRojo from "../../../resources/logorojo.png";
 import $ from "jquery";
+import { checkSession } from '../checksession';
 
 
 class NavbarAdmin extends React.Component {
@@ -10,6 +11,7 @@ class NavbarAdmin extends React.Component {
     validacion: false
   };
   componentDidMount = () => {
+    checkSession();
     var { active } = this.props;
   };
 
@@ -17,19 +19,19 @@ class NavbarAdmin extends React.Component {
   render() {
     return (
       <div className="navbar_morena nvocolor_rojo" style={{ flexWrap: 'nowrap', overflow: 'auto', justifyContent: 'center', width: 'auto' }}>
-        <Link className="p-3" to="/admin/trayectoria">
+        <Link className="px-3" to="/admin/trayectoria">
           TRAYECTORIA
         </Link>
-        <Link className="p-3" to="/admin/blog">
+        <Link className="px-3" to="/admin/blog">
           BLOG
         </Link>
-        <Link className="p-3" to="/admin/danielserrano">
+        <Link className="px-3" to="/admin/danielserrano">
           <img style={{ width: "5rem" }} src={logoRojo}></img>
         </Link>
-        <Link className="p-3" to="/admin/edomex">
+        <Link className="px-3" to="/admin/edomex">
           POR EL EDOMEX
         </Link>
-        <Link className="p-3" to="/admin/noticias">
+        <Link className="px-3" to="/admin/noticias">
           NOTICIAS
         </Link>
       </div>

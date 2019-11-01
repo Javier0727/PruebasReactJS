@@ -6,8 +6,23 @@ import UserControlBtn from '../UserControl/UserControlBtn';
 export class BlogAdmin extends Component {
 
     state = {
-        videoYT: ''
+        videoYT: '',
+        blogData: []
     }
+
+    componentDidMount() {
+        fetch("http://laravel.danielserrano.com.mx/public/api/blog")
+            .then(response => response.json())
+            .then(responseJSON => {
+                console.log(responseJSON)
+                this.setState({
+                    blogData: responseJSON.blog
+                })
+            })
+            .catch(err => console.log(err))
+    }
+
+
     _create = () => {
         if (this.state.videoYT !== '' && this.state.videoYT.includes("youtube")) {
             fetch('http://laravel.danielserrano.com.mx/public/api/blog/create', {
@@ -45,7 +60,7 @@ export class BlogAdmin extends Component {
                         <div className='row mt-5'>
                             <div className='col-12 mt-5 h4'>
                                 Enlace del video
-                            <input value={this.state.videoYT} className='form-control' onChange={(event) => this.setState({ videoYT: event.target.value })} type='text'></input>
+                            <input placeholder='Ingresar enlace de youtube.' value={this.state.videoYT} className='form-control' onChange={(event) => this.setState({ videoYT: event.target.value })} type='text'></input>
                             </div>
                         </div>
 
@@ -54,7 +69,17 @@ export class BlogAdmin extends Component {
                                 <div onClick={() => this._create()} className='btn btn-danger' style={{ cursor: 'pointer' }}>Guardar</div>
                             </div>
                         </div>
-
+                        <div className='row mt-3'>
+                            {this.state.blogData.length > 0 ? (
+                                this.state.blogData.map(blog =>
+                                    blog.status === 1 ? (
+                                        <div onClick={() => console.log(blog.id)} key={blog.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                            {blog.video_one}
+                                        </div>
+                                    ) : (null)
+                                )
+                            ) : (null)}
+                        </div>
                     </div>
                 </div>
                 <UserControlBtn redir={this.props.history}></UserControlBtn>

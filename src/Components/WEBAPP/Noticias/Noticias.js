@@ -32,9 +32,9 @@ export class Noticias extends Component {
           videocolumna = [];
         responseJSON.noticias.forEach(noticia => {
           if (noticia.categoria === 'columna') {
-            columna.push({ 'titulo': noticia.titulo, 'link': noticia.link_one, 'img': noticia.img_one, 'id': noticia.id })
+            columna.push({ 'titulo': noticia.titulo, 'link': noticia.link_one, 'img': noticia.img_one, 'id': noticia.id, 'status': noticia.status })
           } else {
-            videocolumna.push({ 'titulo': noticia.titulo, 'link': noticia.link_one, 'img': noticia.img_one, 'id': noticia.id })
+            videocolumna.push({ 'titulo': noticia.titulo, 'link': noticia.link_one, 'img': noticia.img_one, 'id': noticia.id, 'status': noticia.status })
           }
         });
         this.setState({
@@ -54,20 +54,23 @@ export class Noticias extends Component {
         <div style={{ paddingTop: "7%" }} className="px-5 mt-md-0  mt-5">
           <div style={{ justifyContent: "center" }} className="row mx-0 mb-4">
             <div className="col-12 px-0">
-              <h2 className="morena_red">VIDEOCOLUMNAS</h2>
+              <h1 className="morena_red">VIDEOCOLUMNAS</h1>
             </div>
 
             <div className="row flex-nowrap w-100 scroll_custom" style={{ overflowX: "auto" }} >
               {this.state.videcolumData.length > 0 ? (
                 this.state.videcolumData.map(videoColumna =>
-                  <div key={videoColumna.id} className="col-12 col-md-4 px-3 mt-3">
-                    <div className="bg-dark" style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
-                      <div style={{ position: 'absolute', color: 'white', zIndex: '99' }}> {videoColumna.titulo} </div>
-                      <a className='h-100 w-100' href={videoColumna.link} target='_blank' style={{ position: 'relative' }}>
-                        <img className='w-100 h-100' alt='MORENA' onError={(event) => event.target.src = DS} src={videoColumna.img}></img>
-                      </a>
+                  videoColumna.status === 1 ? (
+                    < div key={videoColumna.id} className="col-12 col-md-4 px-3 mt-3" >
+                      <div style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
+                        <div style={{ position: 'absolute', color: 'white', zIndex: '99' }}> {videoColumna.titulo} </div>
+                        <a className='h-100 w-100' href={videoColumna.link} target='_blank' style={{ position: 'relative' }}>
+                          <img className='w-100 h-100  noticia_cont position-absolute' alt='MORENA' onError={(event) => event.target.src = DS} src={videoColumna.img}></img>
+                        </a>
+                      </div>
                     </div>
-                  </div>
+                  ) : (null)
+
                 )
               ) : (null)}
 
@@ -76,35 +79,30 @@ export class Noticias extends Component {
           </div>
           <div style={{ justifyContent: "center" }} className="row mx-0 mb-4">
             <div className="col-12 px-0">
-              <h2 className="morena_red">COLUMNAS</h2>
+              <h1 className="morena_red">COLUMNAS</h1>
             </div>
 
             <div className="row flex-nowrap w-100 scroll_custom" style={{ overflowX: "auto" }} >
               {this.state.columData.length > 0 ? (
                 this.state.columData.map(Columna =>
-                  <div key={Columna.id} className="col-12 col-md-4 px-3 mt-3">
-                    <div className="bg-dark" style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
-                      <div style={{ position: 'absolute', color: 'white', zIndex: '99' }}> {Columna.titulo} </div>
-                      <a className='h-100 w-100' href={Columna.link} target='_blank' style={{ position: 'relative' }}>
-                        <img className='w-100 h-100' alt='MORENA' onError={(event) => event.target.src = DS} src={Columna.img}></img>
-                      </a>
+                  Columna.status === 1 ? (
+                    <div key={Columna.id} className="col-12 col-md-4 px-3 mt-3">
+                      <div style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
+                        <div style={{ position: 'absolute', color: 'white', zIndex: '99' }}> {Columna.titulo} </div>
+                        <a className='h-100 w-100' href={Columna.link} target='_blank' style={{ position: 'relative' }}>
+                          <img className='w-100 h-100 noticia_cont position-absolute' alt='MORENA' onError={(event) => event.target.src = DS} src={Columna.img}></img>
+                        </a>
+                      </div>
                     </div>
-                  </div>
+                  ) : (null)
+
                 )
               ) : (null)}
-              {/* <div className="col-12 col-md-4 px-3 mt-3">
-                <div className="bg-dark" style={{ height: "15rem", cursor: "pointer" }} >
-                  <a href='http://www.mefiafire/acces.jpg' target='_blank'>
-                    <img className='w-100 h-100' alt='MORENA' src={DS}></img>
-                  </a>
-                </div>
-              </div> */}
-              {/*  */}
             </div>
           </div>
         </div>
         <Footer></Footer>
-      </div>
+      </div >
     );
   }
 }

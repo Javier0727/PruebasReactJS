@@ -55,6 +55,15 @@ export class LandingAdmin extends Component {
                     .then(response => { console.log(response); return response.json() })
                     .then(responseJSON => {
                         console.log(responseJSON);
+                        if (responseJSON.status === 'succes') {
+                            this.setState({
+                                videoHome: '',
+                                videoTrayectoria: '',
+                                imgTrayectoria1: '',
+                                imgTrayectoria2: ''
+                            })
+                            alert("Registro completado.")
+                        }
                     })
                     .catch(err => console.log(err))
             } else {
@@ -103,7 +112,7 @@ export class LandingAdmin extends Component {
                         </div>
                         {/* <div className='row'> */}
                         <div className='col-12'>
-                            <input className='form-control' onChange={(event) => this.setState({ videoHome: event.target.value })} type='text'></input>
+                            <input placeholder='Video de youtube que va en landing page.' value={this.state.videoHome} className='form-control' onChange={(event) => this.setState({ videoHome: event.target.value })} type='text'></input>
                         </div>
                         {/* </div> */}
                         {/* <div className='row'> */}
@@ -113,7 +122,7 @@ export class LandingAdmin extends Component {
                         {/* </div> */}
                         {/* <div className='row'> */}
                         <div className='col-12'>
-                            <input className='form-control' onChange={(event) => this.setState({ videoTrayectoria: event.target.value })} type='text'></input>
+                            <input placeholder='Video de youtube que va en trayectoria.' value={this.state.videoTrayectoria} className='form-control' onChange={(event) => this.setState({ videoTrayectoria: event.target.value })} type='text'></input>
                         </div>
                         {/* </div> */}
                         {/* <div className='row'> */}

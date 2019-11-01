@@ -34,7 +34,7 @@ export class PorElEdoMex extends Component {
           style={{ position: "absolute", top: "-3%" }}
         ></div>
         <Navbar active={false}></Navbar>
-        <div className="cont-vid topnv" style={{overflow: 'hidden',}}>
+        <div className="cont-vid topnv" style={{ overflow: 'hidden', }}>
           <YouTube
             className="h-100 w-100"
             opts={opts}
@@ -56,13 +56,13 @@ export class PorElEdoMex extends Component {
                 flexDirection: "column"
               }}
             >
-              <Link to="/edomex/pueblo" className="h1 text-light p-2">
+              <Link to="/edomex/pueblo" className="text-light p-2 txt_edo">
                 Pueblo Organizado
               </Link>
-              <Link to="/edomex/militancia" className="h1 text-light p-2">
+              <Link to="/edomex/militancia" className="text-light p-2 txt_edo">
                 Con la militancia
               </Link>
-              <Link to="/edomex/distritos" className="h1 text-light p-2">
+              <Link to="/edomex/distritos" className="text-light p-2 txt_edo">
                 Distritos
               </Link>
               {/* <img className="w-100 h-100 img-contain" src={logoDS}></img> */}

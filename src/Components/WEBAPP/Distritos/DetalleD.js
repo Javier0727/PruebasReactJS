@@ -42,7 +42,7 @@ class DetalleD extends Component {
         <Navbar active={false}></Navbar>
         {this.state.modal ? (
           <div className="modal_cont" style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white" }}>
-            <div className="w-75 h-75 bg-danger">
+            <div className="w-75 h-75 degradado_solid">
               <img style={{ objectFit: 'contain' }} onError={(event) => event.target.src = DS} src={this.state.imagen}></img>
               {/* <iframe className='h-100 w-100' src="https://www.youtube.com/embed/7SoYXlIZ7vU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
             </div>
@@ -54,7 +54,7 @@ class DetalleD extends Component {
         <div style={{ paddingTop: "7%" }} className="px-5">
           <div style={{ justifyContent: "center" }} className="row mx-0 mb-4">
             <div className="col-12 px-0">
-              <h2 className="morena_red">PUEBLO ORGANIZADO</h2>
+              <h1 className="morena_red">PUEBLO ORGANIZADO</h1>
             </div>
             {this.state.distritosData.length != undefined ? (
               this.state.distritosData.map(distrito =>

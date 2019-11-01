@@ -45,7 +45,7 @@ class Blog extends Component {
         <Navbar active={false}></Navbar>
         {this.state.modal ? (
           <div className="modal_cont" style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white" }}>
-            <div className="w-50 h-50 bg-danger">
+            <div className="w-75 h-75 bg-danger">
               <iframe className='h-100 w-100' src={`https://www.youtube.com/embed/${this.state.video.split('=')[1]}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </div>
             <div className="close_modal" onClick={() => this.setState({ modal: false, id: 0 })} >
@@ -56,13 +56,13 @@ class Blog extends Component {
         <div style={{ paddingTop: "7%" }} className="px-5">
           <div style={{ justifyContent: "center" }} className="row mx-0 mb-4">
             <div className="col-12 px-0">
-              <h2 className="morena_red">Blog</h2>
+              <h1 className="morena_red">BLOG</h1>
             </div>
             {this.state.listadoData.length != undefined ? (
               this.state.listadoData.map(blogData =>
                 <div key={blogData.id} className="col-12 col-md-5 px-3 mt-3">
-                  <div onClick={() => this.setState({ modal: true, id: blogData.id, video: blogData.video_one })} className="bg-dark" style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', backgroundImage: `url(https://img.youtube.com/vi/${blogData.video_one.split("=")[1]}/maxresdefault.jpg)`, backgroundPosition: 'center', backgroundSize: 'cover', boxShadow: '0px 0px 5px 0px grey' }} >
-                    {/* Nota {blogData.id} */}
+                  <div onClick={() => this.setState({ modal: true, id: blogData.id, video: blogData.video_one })} className="bg-dark position-relative" style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', backgroundImage: `url(https://img.youtube.com/vi/${blogData.video_one.split("=")[1]}/maxresdefault.jpg)`, backgroundPosition: 'center', backgroundSize: 'cover', boxShadow: '0px 0px 5px 0px grey' }} >
+                    <div className='position-absolute w-100 h-100 cont-blog'></div>
                   </div>
                 </div>
               )

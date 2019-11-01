@@ -41,7 +41,7 @@ class Distritos extends Component {
         <div style={{ paddingTop: "7%" }} className="px-5 mt-md-0  mt-5">
           <div style={{ justifyContent: "center" }} className="row mx-0 mb-4">
             <div className="col-12 px-0">
-              <h2 className="morena_red">DISTRITOS</h2>
+              <h1 className="morena_red">DISTRITOS</h1>
             </div>
 
             <div className="row w-100 scroll_custom" >

@@ -15,7 +15,7 @@ export class Landing extends Component {
       .then(responseJSON => {
         console.log(responseJSON);
         this.setState({
-          mediaData: responseJSON.Content[responseJSON.Content.length -1]
+          mediaData: responseJSON.Content[responseJSON.Content.length - 1]
         })
       })
       .catch(err => {
@@ -47,7 +47,7 @@ export class Landing extends Component {
               className="h-100 w-100"
               opts={opts}
               // videoId="123123"
-              videoId={this.state.mediaData.video_home.split("=")[1]}
+              videoId={this.state.mediaData.video_home !== null ? (this.state.mediaData.video_home.split("=")[1]) : ("7SoYXlIZ7vU")}
               containerClassName="h-100 w-100 position-absolute"
               onReady={this._onReady}
               onEnd={this._onReady}
