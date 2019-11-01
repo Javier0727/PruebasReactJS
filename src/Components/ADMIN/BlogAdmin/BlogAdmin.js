@@ -22,6 +22,24 @@ export class BlogAdmin extends Component {
             .catch(err => console.log(err))
     }
 
+    _delete = (id) => {
+        fetch(`http://laravel.danielserrano.com.mx/public/api/blog/update/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                "status": "0",
+                "token": localStorage.getItem('token')
+            })
+        })
+            .then((response) => response.json())
+            .then(responseJSON => {
+                console.log(responseJSON)
+                alert("Registro eliminado correctamente.")
+                window.location.reload();
+            })
+            .catch((err) => {
+                alert("Intentar más tarde.")
+            });
+    }
 
     _create = () => {
         if (this.state.videoYT !== '' && this.state.videoYT.includes("youtube")) {
@@ -73,7 +91,7 @@ export class BlogAdmin extends Component {
                             {this.state.blogData.length > 0 ? (
                                 this.state.blogData.map(blog =>
                                     blog.status === 1 ? (
-                                        <div onClick={() => console.log(blog.id)} key={blog.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                        <div onClick={() => this._delete(blog.id)} key={blog.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
                                             {blog.video_one}
                                         </div>
                                     ) : (null)

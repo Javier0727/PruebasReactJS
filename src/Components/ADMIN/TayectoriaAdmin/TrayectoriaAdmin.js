@@ -22,6 +22,24 @@ export class TrayectoriaAdmin extends Component {
             })
     }
 
+    _delete = (id) => {
+        fetch(`http://laravel.danielserrano.com.mx/public/api/trayectoria/update/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                "status": "0",
+                "token": localStorage.getItem('token')
+            })
+        })
+            .then((response) => response.json())
+            .then(responseJSON => {
+                console.log(responseJSON)
+                alert("Registro eliminado correctamente.")
+                window.location.reload();
+            })
+            .catch((err) => {
+                alert("Intentar más tarde.")
+            });
+    }
 
     _create = () => {
         if (this.state.yearStart !== '' && this.state.yearEnd !== '' && this.state.description !== '') {
@@ -82,7 +100,7 @@ export class TrayectoriaAdmin extends Component {
                             {this.state.trayectoria.length > 0 ? (
                                 this.state.trayectoria.map(trayectoria =>
                                     trayectoria.status === 1 ? (
-                                        <div onClick={() => console.log(trayectoria.id)} key={trayectoria.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                        <div onClick={() => this._delete(trayectoria.id)} key={trayectoria.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
                                             {trayectoria.year_ini} - {trayectoria.year_fin} | {trayectoria.descripcion}
                                         </div>
                                     ) : (null)

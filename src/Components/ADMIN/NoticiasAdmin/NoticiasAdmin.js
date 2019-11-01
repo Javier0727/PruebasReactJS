@@ -25,6 +25,25 @@ export class NoticiasAdmin extends Component {
             })
     }
 
+    _delete = (id) => {
+        fetch(`http://laravel.danielserrano.com.mx/public/api/noticias/update/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                "status": "0",
+                "token": localStorage.getItem('token')
+            })
+        })
+            .then((response) => response.json())
+            .then(responseJSON => {
+                console.log(responseJSON)
+                alert("Registro eliminado correctamente.")
+                window.location.reload();
+            })
+            .catch((err) => {
+                alert("Intentar más tarde.")
+            });
+    }
+
     _create = () => {
         if (this.state.categoria !== '' && this.state.titulo !== '' && this.state.enlace !== '' && this.state.imagen !== '') {
             fetch('http://laravel.danielserrano.com.mx/public/api/noticias/create', {
@@ -119,7 +138,7 @@ export class NoticiasAdmin extends Component {
                             {this.state.noticias.length > 0 ? (
                                 this.state.noticias.map(noticia =>
                                     noticia.status === 1 ? (
-                                        <div onClick={() => console.log(noticia.id)} key={noticia.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                        <div onClick={() => this._delete(noticia.id)} key={noticia.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
                                             {noticia.categoria} - {noticia.titulo}
                                         </div>
                                     ) : (null)

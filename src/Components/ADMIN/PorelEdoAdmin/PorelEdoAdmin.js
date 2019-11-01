@@ -63,6 +63,78 @@ export class PorelEdoAdmin extends Component {
             .catch(err => console.log(err));
     }
 
+    _delete1 = (id) => {
+        fetch(`http://laravel.danielserrano.com.mx/public/api/pueblo/update/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                "status": "0",
+                "token": localStorage.getItem('token')
+            })
+        })
+            .then((response) => response.json())
+            .then(responseJSON => {
+                console.log(responseJSON)
+                alert("Registro eliminado correctamente.")
+                window.location.reload();
+            })
+            .catch((err) => {
+                alert("Intentar más tarde.")
+            });
+    }
+    _delete2 = (id) => {
+        fetch(`http://laravel.danielserrano.com.mx/public/api/militancia/update/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                "status": "0",
+                "token": localStorage.getItem('token')
+            })
+        })
+            .then((response) => response.json())
+            .then(responseJSON => {
+                console.log(responseJSON)
+                alert("Registro eliminado correctamente.")
+                window.location.reload();
+            })
+            .catch((err) => {
+                alert("Intentar más tarde.")
+            });
+    }
+    _delete3 = (id) => {
+        fetch(`http://laravel.danielserrano.com.mx/public/api/distritos/update/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                "status": "0",
+                "token": localStorage.getItem('token')
+            })
+        })
+            .then((response) => response.json())
+            .then(responseJSON => {
+                console.log(responseJSON)
+                alert("Registro eliminado correctamente.")
+                window.location.reload();
+            })
+            .catch((err) => {
+                alert("Intentar más tarde.")
+            });
+    }
+    _delete4 = (id) => {
+        fetch(`http://laravel.danielserrano.com.mx/public/api/distritos/img/update/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                "status": "0",
+                "token": localStorage.getItem('token')
+            })
+        })
+            .then((response) => response.json())
+            .then(responseJSON => {
+                console.log(responseJSON)
+                alert("Registro eliminado correctamente.")
+                window.location.reload();
+            })
+            .catch((err) => {
+                alert("Intentar más tarde.")
+            });
+    }
 
     _base64 = (file, donde) => {
         var esto = this;
@@ -262,7 +334,7 @@ export class PorelEdoAdmin extends Component {
                             {this.state.puebloData.length > 0 ? (
                                 this.state.puebloData.map(pueblo =>
                                     pueblo.status === 1 ? (
-                                        <div onClick={() => console.log(pueblo.id)} key={pueblo.id} className='col-3 d-flex justify-content-center mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                        <div onClick={() => this._delete1(pueblo.id)} key={pueblo.id} className='col-3 d-flex justify-content-center mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
                                             <img src={pueblo.img_one} style={{ width: '5rem' }}></img>
                                         </div>
                                     ) : (null)
@@ -293,7 +365,7 @@ export class PorelEdoAdmin extends Component {
                             {this.state.militanciaData.length > 0 ? (
                                 this.state.militanciaData.map(militancia =>
                                     militancia.status === 1 ? (
-                                        <div onClick={() => console.log(militancia.id)} key={militancia.id} className='col-3 d-flex justify-content-center mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                        <div onClick={() => this._delete2(militancia.id)} key={militancia.id} className='col-3 d-flex justify-content-center mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
                                             <img src={militancia.img_one} style={{ width: '5rem', height: '7rem' }}></img>
                                         </div>
                                     ) : (null)
@@ -348,11 +420,11 @@ export class PorelEdoAdmin extends Component {
                                     </div>
                                 </div>
                             )}
-                        <div className='row mt-3'>
+                        <div className='row mt-3' style={{ minHeight: '4rem' }}>
                             {this.state.distritosList.length > 0 ? (
                                 this.state.distritosList.map(distrito =>
                                     distrito.status === 1 ? (
-                                        <div onClick={() => console.log(distrito.id)} key={distrito.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                        <div onClick={() => this._delete3(distrito.id)} key={distrito.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
                                             {distrito.title}
                                         </div>
                                     ) : (null)
@@ -366,7 +438,7 @@ export class PorelEdoAdmin extends Component {
                             {this.state.distritosImgData.length > 0 ? (
                                 this.state.distritosImgData.map(distImg =>
                                     distImg.status === 1 ? (
-                                        <div onClick={() => console.log(distImg.id)} key={distImg.id} className='col-3 d-flex position-relative align-items-center justify-content-center mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                        <div onClick={() => this._delete4(distImg.id)} key={distImg.id} className='col-3 d-flex position-relative align-items-center justify-content-center mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
                                             <img src={distImg.img_distrito} style={{ width: '5rem', height: '7rem' }}></img>
                                             <div className='position-absolutes'>Distrito {distImg.numero_distro}</div>
                                         </div>
