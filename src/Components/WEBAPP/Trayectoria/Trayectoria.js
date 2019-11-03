@@ -28,7 +28,7 @@ export default class Trayectoria extends Component {
       .then(responseJSON => {
         console.log(responseJSON.Content.length);
         this.setState({
-          mediaData: responseJSON.Content[responseJSON.Content.length -1]
+          mediaData: responseJSON.Content[responseJSON.Content.length - 1]
         })
       })
       .catch(err => {
@@ -59,12 +59,14 @@ export default class Trayectoria extends Component {
 
             {this.state.trayData.length !== undefined ? (
               this.state.trayData.map((trayectoria) =>
-                <div key={trayectoria.id} className="row">
-                  <div className="col-2 morena_red"> {trayectoria.year_ini}-{trayectoria.year_fin} </div>
-                  <div className="col-10">
-                    {trayectoria.descripcion}
+                trayectoria.status === 1 ? (
+                  <div key={trayectoria.id} className="row">
+                    <div className="col-2 morena_red"> {trayectoria.year_ini}-{trayectoria.year_fin} </div>
+                    <div className="col-10">
+                      {trayectoria.descripcion}
+                    </div>
                   </div>
-                </div>
+                ) : (null)
               )
             ) : (null)
             }
