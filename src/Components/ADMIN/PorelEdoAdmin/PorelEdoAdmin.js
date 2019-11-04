@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NavbarAdmin from '../NavbarAdmin/NavbarAdmin';
 import Logout from '../Logout/Logout';
 import UserControlBtn from '../UserControl/UserControlBtn';
+import Loader from '../../../resources/loader.gif';
 
 export class PorelEdoAdmin extends Component {
     state = {
@@ -16,7 +17,8 @@ export class PorelEdoAdmin extends Component {
         puebloData: [],
         militanciaData: [],
         distritosData: [],
-        distritosImgData: []
+        distritosImgData: [],
+        loader: false
     }
 
     componentDidMount() {
@@ -170,6 +172,9 @@ export class PorelEdoAdmin extends Component {
 
     _createPueblo = () => {
         if (this.state.imgPueblo !== '') {
+            this.setState({
+                loader: true
+            })
             fetch("http://laravel.danielserrano.com.mx/public/api/pueblo/create", {
                 method: 'POST',
                 body: JSON.stringify({
@@ -183,19 +188,32 @@ export class PorelEdoAdmin extends Component {
                     if (responseJSON.code !== 400) {
                         if (responseJSON.status === 'succes') {
                             this.setState({
-                                imgPueblo: ''
+                                imgPueblo: '',
+                                loader: false
                             })
                             alert("Registro creado.");
                         } else {
+                            this.setState({
+                                loader: false
+                            })
                             alert("Intentar más tarde.");
                         }
                     } else {
+                        this.setState({
+                            loader: false
+                        })
                         alert("Usuario no logeado.");
                         this.props.history.push("/admin");
                     }
                     console.log(responseJSON)
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    this.setState({
+                        loader: false
+                    })
+                    alert("Intentar más tarde.")
+                    console.log(err)
+                })
         } else {
             alert("Llenar todos los datos.")
         }
@@ -203,6 +221,9 @@ export class PorelEdoAdmin extends Component {
 
     _createMilitancia = () => {
         if (this.state.imgMilitancia !== '') {
+            this.setState({
+                loader: true
+            })
             fetch("http://laravel.danielserrano.com.mx/public/api/militancia/create", {
                 method: 'POST',
                 body: JSON.stringify({
@@ -216,25 +237,41 @@ export class PorelEdoAdmin extends Component {
                     if (responseJSON.code !== 400) {
                         if (responseJSON.status === 'succes') {
                             this.setState({
-                                imgMilitancia: ''
+                                imgMilitancia: '',
+                                loader: false
                             })
                             alert("Registro creado.");
                         } else {
+                            this.setState({
+                                loader: false
+                            })
                             alert("Intentar más tarde.");
                         }
                     } else {
+                        this.setState({
+                            loader: false
+                        })
                         alert("Usuario no logeado.");
                         this.props.history.push("/admin");
                     }
                     console.log(responseJSON)
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    this.setState({
+                        loader: false
+                    })
+                    alert('Intentar más tarde.')
+                    console.log(err)
+                })
         } else {
             alert("Llenar todos los datos.")
         }
     }
     _newImageDist = () => {
         if (this.state.imgDistrito !== '' && this.state.distritoId !== '' && this.state.distritoId !== '0') {
+            this.setState({
+                loader: true
+            })
             fetch('http://laravel.danielserrano.com.mx/public/api/distritos/img/create', {
                 method: 'POST',
                 body: JSON.stringify({
@@ -252,18 +289,31 @@ export class PorelEdoAdmin extends Component {
                         if (responseJSON.code === 200) {
                             this.setState({
                                 imgDistrito: '',
-                                distritoId: ''
+                                distritoId: '',
+                                loader: false
                             })
                             alert("Registro creado.");
                         } else {
+                            this.setState({
+                                loader: false
+                            })
                             alert("Intentar más tarde.");
                         }
                     } else {
+                        this.setState({
+                            loader: false
+                        })
                         alert("Usuario no logeado.");
                         this.props.history.push("/admin");
                     }
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    this.setState({
+                        loader: false
+                    })
+                    alert('Intentar más tarde.')
+                    console.log(err)
+                })
         } else {
             alert("Llenar todos los campos.");
         }
@@ -307,7 +357,12 @@ export class PorelEdoAdmin extends Component {
 
     render() {
         return (
-            <div className='container-fluid'>
+            <div className='container-fluid position-relative px-0 overflow-hidden'>
+                {this.state.loader ? (
+                    <div className='position-fixed vh-100 vw-100 d-flex justify-content-center align-items-center' style={{ zIndex: 999, backgroundColor: 'rgba(0,0,0,.5)' }}>
+                        <img alt='loader' src={Loader} style={{ width: '3rem', height: '3rem', }}></img>
+                    </div>
+                ) : (null)}
                 <NavbarAdmin></NavbarAdmin>
                 <div className='row mb-5' style={{ justifyContent: 'center' }}>
                     <div className='col-md-6 col-10' style={{ boxShadow: '0px 0px 5px 0px gray', paddingBottom: '1rem' }}>
@@ -321,7 +376,7 @@ export class PorelEdoAdmin extends Component {
                                         ) : (null)}
                                     </div>
                                 </label>
-                                <input id='img1' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 1)} type='file'></input>
+                                <input id='img1' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 1)} type='file' accept="image/*"></input>
                             </div>
                         </div>
                         <div className='row'>
@@ -334,7 +389,7 @@ export class PorelEdoAdmin extends Component {
                             {this.state.puebloData.length > 0 ? (
                                 this.state.puebloData.map(pueblo =>
                                     pueblo.status === 1 ? (
-                                        <div onClick={() => this._delete1(pueblo.id)} key={pueblo.id} className='col-3 d-flex justify-content-center mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                        <div onClick={() => this._delete1(pueblo.id)} key={pueblo.id} className='col-3 d-flex justify-content-center mb-1 delete cursor_pointer' style={{ border: '1px solid gray', minHeight: '3rem' }}>
                                             <img src={pueblo.img_one} style={{ width: '5rem' }}></img>
                                         </div>
                                     ) : (null)
@@ -352,7 +407,7 @@ export class PorelEdoAdmin extends Component {
                                         ) : (null)}
                                     </div>
                                 </label>
-                                <input id='img2' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 2)} type='file'></input>
+                                <input id='img2' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 2)} type='file' accept="image/*"></input>
                             </div>
                         </div>
                         <div className='row'>
@@ -401,7 +456,7 @@ export class PorelEdoAdmin extends Component {
                                                         ) : (null)}
                                                     </div>
                                                 </label>
-                                                <input id='img3' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 3)} type='file'></input>
+                                                <input id='img3' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 3)} type='file' accept="image/*"></input>
                                             </div>
                                         )}
                                 </div>

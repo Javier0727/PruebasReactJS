@@ -3,6 +3,7 @@ import NavbarAdmin from '../NavbarAdmin/NavbarAdmin';
 import Logout from '../Logout/Logout';
 import UserControlBtn from '../UserControl/UserControlBtn';
 // import { checkSession } from '../checksession';
+import Loader from '../../../resources/loader.gif';
 
 export class NoticiasAdmin extends Component {
 
@@ -11,7 +12,8 @@ export class NoticiasAdmin extends Component {
         titulo: '',
         enlace: '',
         imagen: '',
-        noticias: []
+        noticias: [],
+        loader: false
     }
 
     componentDidMount() {
@@ -46,6 +48,9 @@ export class NoticiasAdmin extends Component {
 
     _create = () => {
         if (this.state.categoria !== '' && this.state.titulo !== '' && this.state.enlace !== '' && this.state.imagen !== '') {
+            this.setState({
+                loader: true
+            })
             fetch('http://laravel.danielserrano.com.mx/public/api/noticias/create', {
                 method: 'POST',
                 body: JSON.stringify({
@@ -65,13 +70,22 @@ export class NoticiasAdmin extends Component {
                             categoria: '',
                             titulo: '',
                             enlace: '',
-                            imagen: ''
+                            imagen: '',
+                            loader: false
                         })
                         alert("Registro creado.");
+                    } else {
+                        this.setState({
+                            loader: false
+                        })
+                        alert('Intentar más tarde');
                     }
                 })
                 .catch(err => {
                     console.log(err);
+                    this.setState({
+                        loader: false
+                    })
                     alert("Intentar de nuevo más tarde.")
                 })
         } else {
@@ -96,7 +110,12 @@ export class NoticiasAdmin extends Component {
     }
     render() {
         return (
-            <div className='container-fluid'>
+            <div className='container-fluid position-relative px-0 overflow-hidden'>
+                {this.state.loader ? (
+                    <div className='position-fixed vh-100 vw-100 d-flex justify-content-center align-items-center' style={{ zIndex: 999, backgroundColor: 'rgba(0,0,0,.5)' }}>
+                        <img alt='loader' src={Loader} style={{ width: '3rem', height: '3rem', }}></img>
+                    </div>
+                ) : (null)}
                 <NavbarAdmin></NavbarAdmin>
                 <div className='row mb-5' style={{ justifyContent: 'center' }}>
                     <div className='col-md-6 col-10' style={{ boxShadow: '0px 0px 5px 0px gray', paddingBottom: '1rem' }}>
@@ -125,7 +144,7 @@ export class NoticiasAdmin extends Component {
                                         ) : (null)}
                                     </div>
                                 </label>
-                                <input id='img1' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0])} type='file'></input>
+                                <input id='img1' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0])} type='file' accept="image/*"></input>
                             </div>
                         </div>
 

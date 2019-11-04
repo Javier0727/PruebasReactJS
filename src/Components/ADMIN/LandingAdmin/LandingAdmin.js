@@ -3,13 +3,15 @@ import NavbarAdmin from '../NavbarAdmin/NavbarAdmin';
 import $ from 'jquery';
 import Logout from '../Logout/Logout';
 import UserControlBtn from '../UserControl/UserControlBtn';
+import Loader from '../../../resources/loader.gif';
 
 export class LandingAdmin extends Component {
     state = {
         videoHome: '',
         videoTrayectoria: '',
         imgTrayectoria1: '',
-        imgTrayectoria2: ''
+        imgTrayectoria2: '',
+        loader: false
     }
 
     _getData = () => {
@@ -38,9 +40,12 @@ export class LandingAdmin extends Component {
     }
 
     _crearOne = () => {
+
         if (this.state.imgTrayectoria1 !== '' && this.state.imgTrayectoria2 !== '' && this.state.imgTrayectoria2 !== '' && this.state.videoHome !== '' && this.state.videoTrayectoria !== '') {
             if (this.state.videoHome.includes('youtube') && this.state.videoTrayectoria.includes('youtube')) {
-
+                this.setState({
+                    loader: true
+                })
                 fetch(`http://laravel.danielserrano.com.mx/public/api/content/create`, {
                     method: 'POST',
                     body: JSON.stringify({
@@ -60,12 +65,19 @@ export class LandingAdmin extends Component {
                                 videoHome: '',
                                 videoTrayectoria: '',
                                 imgTrayectoria1: '',
-                                imgTrayectoria2: ''
+                                imgTrayectoria2: '',
+                                loader: false
                             })
                             alert("Registro completado.")
                         }
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => {
+                        console.log(err);
+                        alert('Intentarlo más tarde.');
+                        this.setState({
+                            loader: false
+                        })
+                    })
             } else {
                 alert('Solo se permiten videos de YouTube, por ejemplo: "https://www.youtube.com/watch?v=7SoYXlIZ7vU".');
             }
@@ -101,7 +113,13 @@ export class LandingAdmin extends Component {
 
     render() {
         return (
-            <div className='container-fluid'>
+            <div className='container-fluid position-relative px-0' style={{ overflow: 'hidden', }}>
+                {this.state.loader ? (
+                    <div className='position-fixed vh-100 vw-100 d-flex justify-content-center align-items-center' style={{ zIndex: 999, backgroundColor: 'rgba(0,0,0,.5)' }}>
+                        <img alt='loader' src={Loader} style={{ width: '3rem', height: '3rem', }}></img>
+                    </div>
+                ) : (null)}
+
                 <NavbarAdmin></NavbarAdmin>
                 <div className='row mb-5' style={{ justifyContent: 'center' }}>
                     <div className='col-md-6 col-10' style={{ boxShadow: '0px 0px 5px 0px gray', paddingBottom: '1rem' }}>
@@ -139,7 +157,7 @@ export class LandingAdmin extends Component {
                                     ) : (null)}
                                 </div>
                             </label>
-                            <input id='img1' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 1)} type='file'></input>
+                            <input id='img1' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 1)} type='file' accept="image/*"></input>
                         </div>
                         {/* </div> */}
                         {/* <div className='row'> */}
@@ -156,7 +174,7 @@ export class LandingAdmin extends Component {
                                     ) : (null)}
                                 </div>
                             </label>
-                            <input id='img2' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 2)} type='file'></input>
+                            <input id='img2' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 2)} type='file' accept="image/*"></input>
                         </div>
                         {/* </div> */}
 
