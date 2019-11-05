@@ -18,7 +18,7 @@ export class LandingAdmin extends Component {
         fetch('http://laravel.danielserrano.com.mx/public/api/content')
             .then(response => response.json())
             .then(responseJSON => {
-                console.log(responseJSON);
+                // console.log(responseJSON);
             })
     }
 
@@ -35,7 +35,7 @@ export class LandingAdmin extends Component {
         })
             .then(response => response.json())
             .then(responseJSON => {
-                console.log(responseJSON);
+                // console.log(responseJSON);
             })
     }
 
@@ -59,7 +59,7 @@ export class LandingAdmin extends Component {
                 })
                     .then(response => { console.log(response); return response.json() })
                     .then(responseJSON => {
-                        console.log(responseJSON);
+                        // console.log(responseJSON);
                         if (responseJSON.status === 'succes') {
                             this.setState({
                                 videoHome: '',

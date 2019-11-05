@@ -23,41 +23,97 @@ export class PorelEdoAdmin extends Component {
 
     componentDidMount() {
 
+        // fetch("http://laravel.danielserrano.com.mx/public/api/pueblo")
+        //     .then(response => response.json())
+        //     .then(responseJSON => {
+        //         console.log(responseJSON)
+        //         this.setState({
+        //             puebloData: responseJSON.Pueblo
+        //         })
+        //     })
+        //     .catch(err => console.log(err));
+
+        this._getPueblo();
+
+        // fetch("http://laravel.danielserrano.com.mx/public/api/militancia")
+        //     .then(response => response.json())
+        //     .then(responseJSON => {
+        //         console.log(responseJSON)
+        //         this.setState({
+        //             militanciaData: responseJSON.Militancia
+        //         })
+        //     })
+        //     .catch(err => console.log(err));
+
+        this._getMilitancia();
+
+        // fetch("http://laravel.danielserrano.com.mx/public/api/distritos")
+        //     .then(response => response.json())
+        //     .then(responseJSON => {
+        //         console.log(responseJSON)
+        //         this.setState({
+        //             distritosList: responseJSON.Distritos
+        //         })
+        //     })
+        //     .catch(err => console.log(err));
+
+        this._getDistritos();
+
+        // fetch("http://laravel.danielserrano.com.mx/public/api/distritos/img/list")
+        //     .then(response => response.json())
+        //     .then(responseJSON => {
+        //         console.log(responseJSON)
+        //         this.setState({
+        //             distritosImgData: responseJSON.Imgdistritos
+        //         })
+        //     })
+        //     .catch(err => console.log(err));
+
+        this._getImgList();
+
+    }
+
+    _getPueblo = () => {
         fetch("http://laravel.danielserrano.com.mx/public/api/pueblo")
             .then(response => response.json())
             .then(responseJSON => {
-                console.log(responseJSON)
+                // console.log(responseJSON)
                 this.setState({
                     puebloData: responseJSON.Pueblo
                 })
             })
             .catch(err => console.log(err));
+    }
 
+    _getMilitancia = () => {
         fetch("http://laravel.danielserrano.com.mx/public/api/militancia")
             .then(response => response.json())
             .then(responseJSON => {
-                console.log(responseJSON)
+                // console.log(responseJSON)
                 this.setState({
                     militanciaData: responseJSON.Militancia
                 })
             })
             .catch(err => console.log(err));
+    }
 
-
+    _getDistritos = () => {
         fetch("http://laravel.danielserrano.com.mx/public/api/distritos")
             .then(response => response.json())
             .then(responseJSON => {
-                console.log(responseJSON)
+                // console.log(responseJSON)
                 this.setState({
                     distritosList: responseJSON.Distritos
                 })
             })
             .catch(err => console.log(err));
+    }
 
+    _getImgList = () => {
         fetch("http://laravel.danielserrano.com.mx/public/api/distritos/img/list")
             .then(response => response.json())
             .then(responseJSON => {
-                console.log(responseJSON)
+                // console.log(responseJSON)
                 this.setState({
                     distritosImgData: responseJSON.Imgdistritos
                 })
@@ -75,9 +131,10 @@ export class PorelEdoAdmin extends Component {
         })
             .then((response) => response.json())
             .then(responseJSON => {
-                console.log(responseJSON)
+                // console.log(responseJSON)
                 alert("Registro eliminado correctamente.")
-                window.location.reload();
+                this._getPueblo();
+                // window.location.reload();
             })
             .catch((err) => {
                 alert("Intentar más tarde.")
@@ -93,9 +150,10 @@ export class PorelEdoAdmin extends Component {
         })
             .then((response) => response.json())
             .then(responseJSON => {
-                console.log(responseJSON)
+                // console.log(responseJSON)
                 alert("Registro eliminado correctamente.")
-                window.location.reload();
+                // window.location.reload();
+                this._getMilitancia();
             })
             .catch((err) => {
                 alert("Intentar más tarde.")
@@ -111,9 +169,10 @@ export class PorelEdoAdmin extends Component {
         })
             .then((response) => response.json())
             .then(responseJSON => {
-                console.log(responseJSON)
+                // console.log(responseJSON)
                 alert("Registro eliminado correctamente.")
-                window.location.reload();
+                // window.location.reload();
+                this._getDistritos();
             })
             .catch((err) => {
                 alert("Intentar más tarde.")
@@ -129,9 +188,10 @@ export class PorelEdoAdmin extends Component {
         })
             .then((response) => response.json())
             .then(responseJSON => {
-                console.log(responseJSON)
+                // console.log(responseJSON)
                 alert("Registro eliminado correctamente.")
-                window.location.reload();
+                // window.location.reload();
+                this._getImgList();
             })
             .catch((err) => {
                 alert("Intentar más tarde.")
@@ -191,6 +251,7 @@ export class PorelEdoAdmin extends Component {
                                 imgPueblo: '',
                                 loader: false
                             })
+                            this._getPueblo();
                             alert("Registro creado.");
                         } else {
                             this.setState({
@@ -205,7 +266,7 @@ export class PorelEdoAdmin extends Component {
                         alert("Usuario no logeado.");
                         this.props.history.push("/admin");
                     }
-                    console.log(responseJSON)
+                    // console.log(responseJSON)
                 })
                 .catch(err => {
                     this.setState({
@@ -240,6 +301,7 @@ export class PorelEdoAdmin extends Component {
                                 imgMilitancia: '',
                                 loader: false
                             })
+                            this._getMilitancia();
                             alert("Registro creado.");
                         } else {
                             this.setState({
@@ -254,7 +316,7 @@ export class PorelEdoAdmin extends Component {
                         alert("Usuario no logeado.");
                         this.props.history.push("/admin");
                     }
-                    console.log(responseJSON)
+                    // console.log(responseJSON)
                 })
                 .catch(err => {
                     this.setState({
@@ -284,7 +346,7 @@ export class PorelEdoAdmin extends Component {
             })
                 .then(response => response.json())
                 .then(responseJSON => {
-                    console.log(responseJSON)
+                    // console.log(responseJSON)
                     if (responseJSON.code !== 400) {
                         if (responseJSON.code === 200) {
                             this.setState({
@@ -292,6 +354,7 @@ export class PorelEdoAdmin extends Component {
                                 distritoId: '',
                                 loader: false
                             })
+                            this._getImgList();
                             alert("Registro creado.");
                         } else {
                             this.setState({
@@ -333,13 +396,14 @@ export class PorelEdoAdmin extends Component {
             })
                 .then(response => response.json())
                 .then(responseJSON => {
-                    console.log(responseJSON);
+                    // console.log(responseJSON);
                     if (responseJSON.code !== 400) {
                         if (responseJSON.code === 200) {
                             this.setState({
                                 distritoTitulo: '',
                                 distritoNew: ''
                             })
+                            this._getDistritos();
                             alert("Registro creado.");
                         } else {
                             alert("Intentar más tarde.");

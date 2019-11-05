@@ -216,7 +216,7 @@ body {
 
 .txt_edo {
   font-size: 3.7rem;
-  transition: 700ms;
+  transition: 400ms;
 }
 
 .txt_edo:hover {
@@ -260,9 +260,15 @@ body {
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
+
 .flechaLeft {
   -webkit-transform: rotate(-270deg);
   -moz-transform: rotate(-270deg);
   -ms-transform: rotate(-270deg);
   transform: rotate(-270deg);
+}
+
+#menu_navbar {
+  transition: 500ms;
+  color: white;
 }

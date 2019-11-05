@@ -52,7 +52,7 @@ export class Noticias extends Component {
         <div className="topnv" style={{ position: "absolute", top: "-3%" }} ></div>
         <Navbar active={false}></Navbar>
         <div style={{ paddingTop: "7%" }} className="px-5 mt-md-0  mt-5">
-          <div style={{ justifyContent: "center" }} className="row mx-0 mb-4">
+          <div style={{ justifyContent: "center", height: '80vh', }} className="row mx-0 mb-4">
             <div className="col-12 px-0">
               <h1 className="morena_red">VIDEOCOLUMNAS</h1>
             </div>
@@ -63,7 +63,7 @@ export class Noticias extends Component {
                   videoColumna.status === 1 ? (
                     < div key={videoColumna.id} className="col-12 col-md-4 px-3 mt-3" >
                       <div style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
-                        <div style={{ position: 'absolute', color: 'white', zIndex: '99' }}> {videoColumna.titulo} </div>
+                        {/* <div style={{ position: 'absolute', color: 'white', zIndex: '99' }}> {videoColumna.titulo} </div> */}
                         <a className='h-100 w-100' href={videoColumna.link} target='_blank' style={{ position: 'relative' }}>
                           <img className='w-100 h-100  noticia_cont position-absolute' alt='MORENA' onError={(event) => event.target.src = DS} src={videoColumna.img}></img>
                         </a>
@@ -77,7 +77,7 @@ export class Noticias extends Component {
               {/*  */}
             </div>
           </div>
-          <div style={{ justifyContent: "center" }} className="row mx-0 mb-4">
+          <div style={{ justifyContent: "center", height: '80vh' }} className="row mx-0 mb-4">
             <div className="col-12 px-0">
               <h1 className="morena_red">COLUMNAS</h1>
             </div>
@@ -88,7 +88,7 @@ export class Noticias extends Component {
                   Columna.status === 1 ? (
                     <div key={Columna.id} className="col-12 col-md-4 px-3 mt-3">
                       <div style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
-                        <div style={{ position: 'absolute', color: 'white', zIndex: '99' }}> {Columna.titulo} </div>
+                        {/* <div style={{ position: 'absolute', color: 'white', zIndex: '99' }}> {Columna.titulo} </div> */}
                         <a className='h-100 w-100' href={Columna.link} target='_blank' style={{ position: 'relative' }}>
                           <img className='w-100 h-100 noticia_cont position-absolute' alt='MORENA' onError={(event) => event.target.src = DS} src={Columna.img}></img>
                         </a>

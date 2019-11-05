@@ -81,7 +81,7 @@ class Blog extends Component {
         {this.state.modal ? (
           <div className="modal_cont" style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white" }}>
             <div className="w-75 h-75 bg-danger">
-              <iframe className='h-100 w-100' src={`https://www.youtube.com/embed/${this.state.video.split('=')[1]}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+              <iframe className='h-100 w-100' src={`https://www.youtube.com/embed/${this.state.video.split('=')[1].split('&')[0]}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </div>
             <div className="close_modal" onClick={() => this.setState({ modal: false, id: 0 })} >
               X
@@ -111,7 +111,7 @@ class Blog extends Component {
                     {/* <div className='row'> */}
                     {grupo.map(grupoF =>
                       <div key={grupoF.id} className="col-12 col-md-6 px-3 mt-3" >
-                        <div onClick={() => this.setState({ modal: true, id: grupoF.id, video: grupoF.video_one })} className="bg-dark position-relative" style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', backgroundImage: `url(https://img.youtube.com/vi/${grupoF.video_one.split("=")[1]}/maxresdefault.jpg)`, backgroundPosition: 'center', backgroundSize: 'cover', boxShadow: '0px 0px 5px 0px grey' }} >
+                        <div onClick={() => this.setState({ modal: true, id: grupoF.id, video: grupoF.video_one })} className="bg-dark position-relative" style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', backgroundImage: `url(https://img.youtube.com/vi/${grupoF.video_one.split("=")[1].split('&')[0]}/maxresdefault.jpg)`, backgroundPosition: 'center', backgroundSize: 'cover', boxShadow: '0px 0px 5px 0px grey' }} >
                           <div className='position-absolute w-100 h-100 cont-blog'></div>
                         </div>
                       </div>

@@ -47,7 +47,7 @@ export class Landing extends Component {
               className="h-100 w-100"
               opts={opts}
               // videoId="123123"
-              videoId={this.state.mediaData.video_home !== null ? (this.state.mediaData.video_home.split("=")[1]) : ("7SoYXlIZ7vU")}
+              videoId={this.state.mediaData.video_home !== null ? (this.state.mediaData.video_home.split("=")[1].split('&')[0]) : ("7SoYXlIZ7vU")}
               containerClassName="h-100 w-100 position-absolute"
               onReady={this._onReady}
               onEnd={this._onReady}

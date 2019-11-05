@@ -12,10 +12,22 @@ export class TrayectoriaAdmin extends Component {
     }
 
     componentDidMount() {
+        // fetch('http://laravel.danielserrano.com.mx/public/api/trayectoria')
+        //     .then(response => response.json())
+        //     .then(responseJSON => {
+        //         console.log(responseJSON.trayectoria)
+        //         this.setState({
+        //             trayectoria: responseJSON.trayectoria
+        //         })
+        //     })
+        this._getTrayectoriaData();
+    }
+
+    _getTrayectoriaData = () => {
         fetch('http://laravel.danielserrano.com.mx/public/api/trayectoria')
             .then(response => response.json())
             .then(responseJSON => {
-                console.log(responseJSON.trayectoria)
+                // console.log(responseJSON.trayectoria)
                 this.setState({
                     trayectoria: responseJSON.trayectoria
                 })
@@ -32,9 +44,10 @@ export class TrayectoriaAdmin extends Component {
         })
             .then((response) => response.json())
             .then(responseJSON => {
-                console.log(responseJSON)
+                // console.log(responseJSON)
                 alert("Registro eliminado correctamente.")
-                window.location.reload();
+                // window.location.reload();
+                this._getTrayectoriaData();
             })
             .catch((err) => {
                 alert("Intentar más tarde.")
@@ -55,13 +68,14 @@ export class TrayectoriaAdmin extends Component {
             })
                 .then(response => response.json())
                 .then(responseJSON => {
-                    console.log(responseJSON)
+                    // console.log(responseJSON)
                     if (responseJSON.status === 'succes') {
                         this.setState({
                             yearEnd: '',
                             yearStart: '',
                             description: ''
                         })
+                        this._getTrayectoriaData();
                         alert("Registro creado.");
                     }
                 })

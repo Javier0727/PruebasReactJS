@@ -21,7 +21,10 @@ class Navbar extends React.Component {
   };
   componentDidMount = () => {
     var { active } = this.props;
-    this._scrolleo();
+    console.log(window.location.pathname)
+    if (window.location.pathname != '/noticias' && window.location.pathname != '/blog' && window.location.pathname != '/edomex/pueblo' && window.location.pathname != '/edomex/militancia' && window.location.pathname != '/edomex/distritos') {
+      this._scrolleo();
+    }
     this.setState({
       active: window.location.pathname
     })
@@ -34,8 +37,8 @@ class Navbar extends React.Component {
       var windowBottom = windowTop + window.innerHeight;
       var elementPositionTop = $(".topnv").offset().top;
       var elementPositionBottom = elementPositionTop + $(".topnv").height();
-
-      if (windowTop <= elementPositionBottom) {
+      // if (windowTop <= elementPositionBottom) {
+      if (windowTop <= 1) {
         $(".txt-footer").css("color", "white");
         $(".navbar_morena").removeClass("nvocolor_rojo");
         $(".navbar_morena img").attr("src", logoDS);
@@ -45,12 +48,15 @@ class Navbar extends React.Component {
         $("#ytDS").attr("src", youtubeB);
         $("#footer_morena").css("background-color", "transparent");
         $("#footer_morena").css("box-shadow", "none");
+        $("#menu_navbar").css("color", "white");
+        
         // $("#bg-navbar").addClass("degradado_solid");
-
+        
       } else {
-
+        
+        $("#menu_navbar").css("color", "#941725");
         // $("#bg-navbar").removeClass("degradado_solid");
-        $("#footer_morena").css("background-color", "#cdcdcd");
+        $("#footer_morena").css("background-color", "#cdcdcd9c");
         $("#footer_morena").css("box-shadow", "0px -2px 7px -3px grey");
 
         $(".txt-footer").css("color", "#941725");
@@ -68,10 +74,9 @@ class Navbar extends React.Component {
     return (
 
       <nav className="navbar navbar-expand-lg position-fixed navbar_morena justify-content-end py-0">
-        {/* <a className="navbar-brand" href="/">Navbar</a> */}
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          {/* <span className="navbar-toggler-icon"></span> */}
-          <img alt='MORENA' src={logoDS} style={{ width: '5rem ' }}></img>
+          {/* <img alt='MORENA' src={logoDS} style={{ width: '5rem ' }}></img> */}
+          <div id='menu_navbar' className='px-2 py-3'>Menú</div>
         </button>
 
         <div className="collapse navbar-collapse justify-content-center align-items-center" id="navbarSupportedContent">

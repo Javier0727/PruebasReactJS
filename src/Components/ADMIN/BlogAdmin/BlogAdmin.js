@@ -11,10 +11,22 @@ export class BlogAdmin extends Component {
     }
 
     componentDidMount() {
+        // fetch("http://laravel.danielserrano.com.mx/public/api/blog")
+        //     .then(response => response.json())
+        //     .then(responseJSON => {
+        //         console.log(responseJSON)
+        //         this.setState({
+        //             blogData: responseJSON.blog
+        //         })
+        //     })
+        //     .catch(err => console.log(err))
+    }
+
+    _getBlogData = () => {
         fetch("http://laravel.danielserrano.com.mx/public/api/blog")
             .then(response => response.json())
             .then(responseJSON => {
-                console.log(responseJSON)
+                // console.log(responseJSON)
                 this.setState({
                     blogData: responseJSON.blog
                 })
@@ -32,9 +44,10 @@ export class BlogAdmin extends Component {
         })
             .then((response) => response.json())
             .then(responseJSON => {
-                console.log(responseJSON)
+                // console.log(responseJSON)
                 alert("Registro eliminado correctamente.")
-                window.location.reload();
+                // window.location.reload();
+                this._getBlogData();
             })
             .catch((err) => {
                 alert("Intentar más tarde.")
@@ -53,11 +66,12 @@ export class BlogAdmin extends Component {
             })
                 .then(response => response.json())
                 .then(responseJSON => {
-                    console.log(responseJSON);
+                    // console.log(responseJSON);
                     if (responseJSON.status === 'succes') {
                         this.setState({
                             videoYT: ''
                         })
+                        this._getBlogData();
                         alert("Registro creado.");
                     }
                 })

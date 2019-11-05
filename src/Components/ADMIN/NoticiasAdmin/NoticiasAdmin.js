@@ -17,10 +17,22 @@ export class NoticiasAdmin extends Component {
     }
 
     componentDidMount() {
+        // fetch('http://laravel.danielserrano.com.mx/public/api/noticias')
+        //     .then(response => response.json())
+        //     .then(responseJSON => {
+        //         console.log(responseJSON.noticias)
+        //         this.setState({
+        //             noticias: responseJSON.noticias
+        //         })
+        //     })
+        this._getNoticias();
+    }
+
+    _getNoticias = () => {
         fetch('http://laravel.danielserrano.com.mx/public/api/noticias')
             .then(response => response.json())
             .then(responseJSON => {
-                console.log(responseJSON.noticias)
+                // console.log(responseJSON.noticias)
                 this.setState({
                     noticias: responseJSON.noticias
                 })
@@ -37,9 +49,10 @@ export class NoticiasAdmin extends Component {
         })
             .then((response) => response.json())
             .then(responseJSON => {
-                console.log(responseJSON)
+                // console.log(responseJSON)
                 alert("Registro eliminado correctamente.")
-                window.location.reload();
+                this._getNoticias();
+                // window.location.reload();
             })
             .catch((err) => {
                 alert("Intentar más tarde.")
@@ -47,7 +60,7 @@ export class NoticiasAdmin extends Component {
     }
 
     _create = () => {
-        if (this.state.categoria !== '' && this.state.titulo !== '' && this.state.enlace !== '' && this.state.imagen !== '') {
+        if (this.state.categoria !== '' && this.state.enlace !== '' && this.state.imagen !== '') {
             this.setState({
                 loader: true
             })
@@ -56,7 +69,7 @@ export class NoticiasAdmin extends Component {
                 body: JSON.stringify({
                     "token": localStorage.getItem('token'),
                     "categoria": this.state.categoria,
-                    "titulo": this.state.titulo,
+                    "titulo": "Daniel Serrano",
                     "link_one": this.state.enlace,
                     "img_one": this.state.imagen.split("base64,")[1],
                     "status": "1"
@@ -64,7 +77,7 @@ export class NoticiasAdmin extends Component {
             })
                 .then(response => response.json())
                 .then(responseJSON => {
-                    console.log(responseJSON)
+                    // console.log(responseJSON)
                     if (responseJSON.status === 'succes') {
                         this.setState({
                             categoria: '',
@@ -73,6 +86,7 @@ export class NoticiasAdmin extends Component {
                             imagen: '',
                             loader: false
                         })
+                        this._getNoticias();
                         alert("Registro creado.");
                     } else {
                         this.setState({
@@ -128,10 +142,10 @@ export class NoticiasAdmin extends Component {
                                     <option value='video columna'>VideoColumna</option>
                                 </select>
                             </div>
-                            <div className='col-12 mt-5 h4'>
+                            {/* <div className='col-12 mt-5 h4'>
                                 Título
                                 <input placeholder='Título de la noticia.' className='form-control' value={this.state.titulo} onChange={(event) => this.setState({ titulo: event.target.value })} type='text'></input>
-                            </div>
+                            </div> */}
                             <div className='col-12 mt-5 h4'>
                                 Enlace
                                 <input placeholder='Enlace web de la noticia' className='form-control' value={this.state.enlace} onChange={(event) => this.setState({ enlace: event.target.value })} type='text'></input>
