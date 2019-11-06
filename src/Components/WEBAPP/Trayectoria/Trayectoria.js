@@ -83,10 +83,10 @@ export default class Trayectoria extends Component {
             </div>
           </div>
           <div className="row mx-0 mb-5">
-            <div className="col-md-9 col-12 bg-danger cursor_pointer" style={{ height: "28rem", backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage: `url(https://img.youtube.com/vi/${this.state.mediaData.video_trayectoria !== undefined ? (this.state.mediaData.video_trayectoria.split("=")[1].split('&')[0]) : ("")}/maxresdefault.jpg)`, boxShadow: '0px 0px 5px 0px gray' }} >
+            <div className="col-md-9 col-12 bg-danger cursor_pointer" style={{ height: "26rem", backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage: `url(https://img.youtube.com/vi/${this.state.mediaData.video_trayectoria !== undefined ? (this.state.mediaData.video_trayectoria.split("=")[1].split('&')[0]) : ("")}/maxresdefault.jpg)`, boxShadow: '0px 0px 5px 0px gray' }} >
               {/* a */}
             </div>
-            <div className="col-md-3 col-12 px-0 px-md-3 mt-2 mt-md-0" style={{ height: "28rem" }} >
+            <div className="col-md-3 col-12 px-0 px-md-3 mt-2 mt-md-0" style={{ height: "26rem" }} >
               <div className="row mx-0 h-50 pb-2 pl-2">
                 <div className="col-12 bg-danger cursor_pointer" style={{ backgroundPosition: 'center', backgroundSize: 'cover', backgroundImage: `url(${this.state.mediaData.img_trayectoria_one})`, boxShadow: '0px 0px 5px 0px gray' }}>{/* aa */}</div>
               </div>
