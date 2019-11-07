@@ -144,7 +144,11 @@ export class TrayectoriaAdmin extends Component {
                             loader: false
                         })
                     })
+            } else {
+                alert("El video tiene que ser de youtube, ejemplo https://www.youtube.com/watch?v=aqRATDYlIVg.");
             }
+        } else {
+            alert("Ingresa todos los datos solicitados");
         }
     }
 
