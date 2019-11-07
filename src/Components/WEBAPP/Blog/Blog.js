@@ -12,6 +12,8 @@ import instagramR from "../../../resources/instagram_rojo.png";
 import youtubeR from "../../../resources/youtube_rojo.png";
 
 import flecha from '../../../resources/flecha_rojo.png'
+import ScrollRight from "../scrollRight";
+import ScrollLeft from "../scrollLeft";
 
 class Blog extends Component {
   state = {
@@ -39,14 +41,14 @@ class Blog extends Component {
         // console.log(responseJSON.blog)
         let grupo = [],
           numeroG;
-          
-          let data = [];
-          responseJSON.blog.map(nota => {
-            if (nota.status === 1) {
-              data.push(nota)
-            }
-          })
-          numeroG = Math.ceil(data.length / 4);
+
+        let data = [];
+        responseJSON.blog.map(nota => {
+          if (nota.status === 1) {
+            data.push(nota)
+          }
+        })
+        numeroG = Math.ceil(data.length / 4);
         for (let index = 0; index < numeroG; index++) {
           grupo.push(data.splice(0, 4))
         }
@@ -96,13 +98,14 @@ class Blog extends Component {
             {console.log(this.state.group.length)}
             {this.state.group.length > 0 ? (
               <div>
-
-                <img onClick={() => this._scrollRight()} className='position-absolute flechaRight' alt='MOREN' src={flecha} style={{ width: '2rem', height: '2rem', right: '-3%', cursor: 'pointer', top: '53%', }}></img>
-                <img onClick={() => this._scrollLeft()} className='position-absolute flechaLeft' alt='MOREN' src={flecha} style={{ width: '2rem', height: '2rem', left: '-3%', cursor: 'pointer', top: '53%', }}></img>
+                <ScrollRight selector='#contenedorBlog'></ScrollRight>
+                <ScrollLeft selector='#contenedorBlog'></ScrollLeft>
+                {/* <img onClick={() => this._scrollRight()} className='position-absolute flechaRight' alt='MOREN' src={flecha} style={{ width: '2rem', height: '2rem', right: '-3%', cursor: 'pointer', top: '53%', }}></img> */}
+                {/* <img onClick={() => this._scrollLeft()} className='position-absolute flechaLeft' alt='MOREN' src={flecha} style={{ width: '2rem', height: '2rem', left: '-3%', cursor: 'pointer', top: '53%', }}></img> */}
               </div>
             ) : (null)}
             {this.state.group.length > 0 ? (
-              <div id='contenedorBlog' className="row flex-nowrap w-100 scroll_custom" style={{ overflow: 'auto', }}>
+              <div id='contenedorBlog' className="row flex-nowrap w-100 scroll_custom px-3" style={{ overflow: 'auto', }}>
                 {/* <div className="container-fluid"> */}
 
                 {this.state.group.map(grupo =>

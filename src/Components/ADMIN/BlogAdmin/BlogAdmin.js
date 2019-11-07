@@ -11,6 +11,7 @@ export class BlogAdmin extends Component {
     }
 
     componentDidMount() {
+        this._getBlogData();
         // fetch("http://laravel.danielserrano.com.mx/public/api/blog")
         //     .then(response => response.json())
         //     .then(responseJSON => {

@@ -50,7 +50,7 @@ class Pueblo extends Component {
           </div>
         ) : null}
         <div style={{ paddingTop: "7%" }} className="px-5">
-          <div style={{ justifyContent: "center" }} className="row mx-0 mb-4">
+          <div style={{ justifyContent: "center" }} className="row mx-0 mb-5 pb-5">
             <div className="col-12 px-0">
               <h1 className="morena_red">PUEBLO ORGANIZADO</h1>
             </div>

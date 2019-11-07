@@ -9,6 +9,8 @@ import facebookR from "../../../resources/facebook_rojo.png";
 import twitterR from "../../../resources/twitter_rojo.png";
 import instagramR from "../../../resources/instagram_rojo.png";
 import youtubeR from "../../../resources/youtube_rojo.png";
+import ScrollLeft from "../scrollLeft";
+import ScrollRight from "../scrollRight";
 
 export class Noticias extends Component {
   state = {
@@ -57,7 +59,7 @@ export class Noticias extends Component {
               <h1 className="morena_red">VIDEOCOLUMNAS</h1>
             </div>
 
-            <div className="row flex-nowrap w-100 scroll_custom" style={{ overflowX: "auto" }} >
+            <div id='scroll_vc' className="row flex-nowrap w-100 scroll_custom position-relative px-4" style={{ overflowX: "auto" }} >
               {this.state.videcolumData.length > 0 ? (
                 this.state.videcolumData.map(videoColumna =>
                   videoColumna.status === 1 ? (
@@ -73,7 +75,8 @@ export class Noticias extends Component {
 
                 )
               ) : (null)}
-
+              <ScrollLeft selector='#scroll_vc'></ScrollLeft>
+              <ScrollRight selector='#scroll_vc'></ScrollRight>
               {/*  */}
             </div>
           </div>
@@ -82,7 +85,7 @@ export class Noticias extends Component {
               <h1 className="morena_red">COLUMNAS</h1>
             </div>
 
-            <div className="row flex-nowrap w-100 scroll_custom" style={{ overflowX: "auto" }} >
+            <div id='scroll_v' className="row flex-nowrap w-100 scroll_custom position-relative px-4" style={{ overflowX: "auto" }} >
               {this.state.columData.length > 0 ? (
                 this.state.columData.map(Columna =>
                   Columna.status === 1 ? (
@@ -98,6 +101,8 @@ export class Noticias extends Component {
 
                 )
               ) : (null)}
+              <ScrollLeft selector='#scroll_v'></ScrollLeft>
+              <ScrollRight selector='#scroll_v'></ScrollRight>
             </div>
           </div>
         </div>

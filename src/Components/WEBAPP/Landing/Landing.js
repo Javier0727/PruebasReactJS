@@ -10,17 +10,29 @@ export class Landing extends Component {
     mediaData: {}
   }
   componentDidMount = () => {
-    fetch(`http://laravel.danielserrano.com.mx/public/api/content`)
+    fetch(`http://laravel.danielserrano.com.mx/public/api/home`)
       .then(response => response.json())
       .then(responseJSON => {
         console.log(responseJSON);
         this.setState({
-          mediaData: responseJSON.Content[responseJSON.Content.length - 1]
+          mediaData: responseJSON.Home[responseJSON.Home.length - 1]
         })
       })
       .catch(err => {
         console.log(err);
       });
+    // fetch(`http://laravel.danielserrano.com.mx/public/api/content`)
+    //   .then(response => response.json())
+    //   .then(responseJSON => {
+    //     console.log(responseJSON);
+    //     this.setState({
+    //       mediaData: responseJSON.Content[responseJSON.Content.length - 1]
+    //     })
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+
   };
   _onReady(event) {
     // console.log(event);
