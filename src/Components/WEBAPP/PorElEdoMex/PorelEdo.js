@@ -11,6 +11,11 @@ import Footer from "../Footer/Footer";
 
 export class PorElEdoMex extends Component {
   componentDidMount = () => {
+    fetch(`http://laravel.danielserrano.com.mx/public/api/edomex`)
+      .then(response => response.json())
+      .then(responseJSON => {
+        console.log(responseJSON)
+      })
     // $(".navbar_morena").addClass("nvocolor_rojo");
     // $(".navbar_morena img").attr("src", logoRojo);
   };
@@ -29,10 +34,7 @@ export class PorElEdoMex extends Component {
     };
     return (
       <div>
-        <div
-          className="topnv"
-          style={{ position: "absolute", top: "-3%" }}
-        ></div>
+        <div className="topnv" style={{ position: "absolute", top: "-3%" }}></div>
         <Navbar active={false}></Navbar>
         <div className="cont-vid topnv" style={{ overflow: 'hidden', }}>
           <YouTube
@@ -43,29 +45,17 @@ export class PorElEdoMex extends Component {
             onReady={this._onReady}
             onEnd={this._onReady}
           />
-          <div
-            className="w-100 h-100"
-            style={{ position: "absolute", backgroundColor: "#9417259e" }}
-          >
-            <div
-              className="ds_logo_trayectoria"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                color: "white",
-                flexDirection: "column"
-              }}
-            >
+          <div className="w-100 h-100" style={{ position: "absolute", backgroundColor: "#9417259e" }} >
+            <div className="ds_logo_trayectoria" style={{ display: "flex", justifyContent: "center", color: "white", flexDirection: "column" }}>
               <Link to="/edomex/pueblo" className="text-light p-2 txt_edo">
-                Pueblo Organizado
-              </Link>
-              <Link to="/edomex/militancia" className="text-light p-2 txt_edo">
                 Con la militancia
               </Link>
+              {/* <Link to="/edomex/militancia" className="text-light p-2 txt_edo">
+                Con la militancia
+              </Link> */}
               <Link to="/edomex/distritos" className="text-light p-2 txt_edo">
                 Distritos
               </Link>
-              {/* <img className="w-100 h-100 img-contain" src={logoDS}></img> */}
             </div>
           </div>
         </div>

@@ -66,10 +66,7 @@ export class Landing extends Component {
             />
           ) : (null)}
           {/* <video style={{ position: 'absolute' }} className='h-100 w-100' src={vid} autoPlay loop></video> */}
-          <div
-            className="w-100 h-100"
-            style={{ position: "absolute", backgroundColor: "#9417259e" }}
-          >
+          <div className="w-100 h-100" style={{ position: "absolute", }} >
             <div className="ds_logo">
               <img className="w-100 h-100 img-contain" src={logoDS}></img>
             </div>

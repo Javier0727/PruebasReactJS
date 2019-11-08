@@ -501,9 +501,9 @@ export class PorelEdoAdmin extends Component {
                                         <option value='0'>Selecciona una opción</option>
                                         {this.state.distritosList.length !== undefined ? (
                                             this.state.distritosList.map(distrito =>
-                                                distrito.status===1?(
-                                                    <option key={distrito.id} value={`${distrito.id},${distrito.numero}`}>{distrito.title}</option>
-                                                    ):(null)
+                                                distrito.status === 1 ? (
+                                                    <option key={distrito.id} value={`${distrito.id},${distrito.numero}`}> Dtto. {distrito.numero} {distrito.title}</option>
+                                                ) : (null)
                                             )
                                         ) : (null)}
                                         <option value='-1'>Crear Nuevo Distrito</option>
@@ -546,7 +546,7 @@ export class PorelEdoAdmin extends Component {
                                 this.state.distritosList.map(distrito =>
                                     distrito.status === 1 ? (
                                         <div onClick={() => this._delete3(distrito.id)} key={distrito.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
-                                            {distrito.title}
+                                            Dtto. {distrito.numero} {distrito.title}
                                         </div>
                                     ) : (null)
                                 )

@@ -87,9 +87,6 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        {/* <NavBar></NavBar> */}
-        {/* <Switch> */}
-
         <Route path="/admin" exact component={Login} />
         <Route path="/admin/trayectoria" exact component={TrayectoriaAdmin} />
         <Route path="/admin/blog" exact component={BlogAdmin} />
@@ -100,17 +97,14 @@ class App extends React.Component {
 
         <Route path="/trayectoria" exact component={Trayectoria} />
         <Route path="/blog" exact component={Blog} />
-        {/* <Route path="/noticias" exact component={Noticias} /> */}
-        {/* <Route path="/" exact component={Landing} /> */}
         <Route exact path="/noticias" component={Noticias} />
         <Route exact path="/edomex" component={PorElEdoMex} />
         <Route exact path="/edomex/pueblo" component={Pueblo} />
         <Route exact path="/edomex/pueblo/:id" component={DetalleP} />
-        <Route exact path="/edomex/militancia" component={Militancia} />
+        {/* <Route exact path="/edomex/militancia" component={Militancia} /> */}
         <Route exact path="/edomex/distritos" component={Distritos} />
         <Route exact path="/edomex/distritos/:id" component={DetalleD} />
         <Route exact path="/" component={Landing} />
-        {/* </Switch> */}
       </Router>
     );
   }

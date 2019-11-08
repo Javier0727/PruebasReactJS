@@ -9,6 +9,11 @@ import Footer from "../Footer/Footer";
 import ScrollDown from "../scrollDown";
 import ScrollUp from "../scrollUp";
 
+import facebookR from "../../../resources/facebook_rojo.png";
+import twitterR from "../../../resources/twitter_rojo.png";
+import instagramR from "../../../resources/instagram_rojo.png";
+import youtubeR from "../../../resources/youtube_rojo.png";
+
 export default class Trayectoria extends Component {
   state = {
     trayData: {},
@@ -16,6 +21,17 @@ export default class Trayectoria extends Component {
   }
 
   componentDidMount = () => {
+    $(".navbar_morena").addClass("nvocolor_rojo");
+    $(".navbar_morena img").attr("src", logoRojo);
+
+    $("#facebookDS").attr("src", facebookR);
+    $("#twitterDS").attr("src", twitterR);
+    $("#instaDS").attr("src", instagramR);
+    $("#ytDS").attr("src", youtubeR);
+
+    $("#footer_morena").css("background-color", "#cdcdcd9c");
+    $("#footer_morena").css("box-shadow", "0px -2px 7px -3px grey");
+
     fetch(`http://laravel.danielserrano.com.mx/public/api/trayectoria`)
       .then(response => response.json())
       .then(responseJSON => {
@@ -42,15 +58,15 @@ export default class Trayectoria extends Component {
     // console.log(this.state.trayData.length)
     return (
       <div>
-        <Navbar active={true}></Navbar>
-        <div className="cont-vid bg_perfilDaniel topnv">
+        <Navbar active={false}></Navbar>
+        {/* <div className="cont-vid bg_perfilDaniel topnv">
           <div className="w-100 h-100 degradado" style={{ position: "absolute", }} >
             <div className="ds_logo_trayectoria">
               <img className="w-100 h-100 img-contain" src={logoDS}></img>
             </div>
           </div>
-        </div>
-        <div className="row mx-0 my-5 position-relative">
+        </div> */}
+        <div className="row pt-5 mx-0 my-5 position-relative">
           <ScrollUp selector='#scrollTrayectoria'></ScrollUp>
           <div id='scrollTrayectoria' className="col-md-6 px-5 mb-5 scroll_customy" style={{ textAlign: "justify", maxHeight: '26rem', overflow: 'auto', minHeight: '25rem' }}>
             <div className="row">

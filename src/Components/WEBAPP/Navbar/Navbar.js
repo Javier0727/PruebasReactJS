@@ -17,56 +17,61 @@ import youtubeR from "../../../resources/youtube_rojo.png";
 class Navbar extends React.Component {
   state = {
     validacion: false,
-    active: ''
+    active: '',
+    val: false
   };
   componentDidMount = () => {
     var { active } = this.props;
-    console.log(window.location.pathname)
-    if (window.location.pathname != '/noticias' && window.location.pathname != '/blog' && window.location.pathname != '/edomex/pueblo' && window.location.pathname != '/edomex/militancia' && window.location.pathname != '/edomex/distritos') {
-      this._scrolleo();
+    // console.log(active)
+    // console.log(window.location.pathname)
+    if (window.location.pathname == '/trayectoria' || window.location.pathname == "/noticias" || window.location.pathname == '/blog' || window.location.pathname == '/edomex/pueblo' || window.location.pathname == '/edomex/militancia' || window.location.pathname == '/edomex/distritos') {
+      this._scrolleo(false);
+    } else {
+      this._scrolleo(true);
     }
     this.setState({
-      active: window.location.pathname
+      active: window.location.pathname,
+      val: active
     })
-    // console.log(active);
   };
 
-  _scrolleo = () => {
+  _scrolleo = (val) => {
+    var validacion = this.state.val;
     $(document).scroll(function () {
-      var windowTop = $(document).scrollTop();
-      var windowBottom = windowTop + window.innerHeight;
-      var elementPositionTop = $(".topnv").offset().top;
-      var elementPositionBottom = elementPositionTop + $(".topnv").height();
-      // if (windowTop <= elementPositionBottom) {
-      if (windowTop <= 1) {
-        $(".txt-footer").css("color", "white");
-        $(".navbar_morena").removeClass("nvocolor_rojo");
-        $(".navbar_morena img").attr("src", logoDS);
-        $("#facebookDS").attr("src", facebookB);
-        $("#twitterDS").attr("src", twitterB);
-        $("#instaDS").attr("src", instagramB);
-        $("#ytDS").attr("src", youtubeB);
-        $("#footer_morena").css("background-color", "transparent");
-        $("#footer_morena").css("box-shadow", "none");
-        $("#menu_navbar").css("color", "white");
-        
-        // $("#bg-navbar").addClass("degradado_solid");
-        
-      } else {
-        
-        $("#menu_navbar").css("color", "#941725");
-        // $("#bg-navbar").removeClass("degradado_solid");
-        $("#footer_morena").css("background-color", "#cdcdcd9c");
-        $("#footer_morena").css("box-shadow", "0px -2px 7px -3px grey");
+      if (validacion) {
 
-        $(".txt-footer").css("color", "#941725");
-        $(".navbar_morena").addClass("nvocolor_rojo");
-        $(".navbar_morena img").attr("src", logoRojo);
-        $("#facebookDS").attr("src", facebookR);
-        $("#twitterDS").attr("src", twitterR);
-        $("#instaDS").attr("src", instagramR);
-        $("#ytDS").attr("src", youtubeR);
+        var windowTop = $(document).scrollTop();
+        var windowBottom = windowTop + window.innerHeight;
+        var elementPositionTop = $(".topnv").offset().top;
+        var elementPositionBottom = elementPositionTop + $(".topnv").height();
+        if (windowTop <= 1) {
+          $(".txt-footer").css("color", "white");
+          $(".navbar_morena").removeClass("nvocolor_rojo");
+          $(".navbar_morena img").attr("src", logoDS);
+          $("#facebookDS").attr("src", facebookB);
+          $("#twitterDS").attr("src", twitterB);
+          $("#instaDS").attr("src", instagramB);
+          $("#ytDS").attr("src", youtubeB);
+          $("#footer_morena").css("background-color", "transparent");
+          $("#footer_morena").css("box-shadow", "none");
+          $("#menu_navbar").css("color", "white");
+
+        } else {
+
+          $("#menu_navbar").css("color", "#941725");
+          $("#footer_morena").css("background-color", "#cdcdcd9c");
+          $("#footer_morena").css("box-shadow", "0px -2px 7px -3px grey");
+
+          $(".txt-footer").css("color", "#941725");
+          $(".navbar_morena").addClass("nvocolor_rojo");
+          $(".navbar_morena img").attr("src", logoRojo);
+          $("#facebookDS").attr("src", facebookR);
+          $("#twitterDS").attr("src", twitterR);
+          $("#instaDS").attr("src", instagramR);
+          $("#ytDS").attr("src", youtubeR);
+        }
       }
+
     });
   };
 

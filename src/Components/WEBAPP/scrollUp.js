@@ -17,7 +17,7 @@ export class ScrollUp extends Component {
     render() {
         return (
             // <div>
-            <img onClick={() => this._scrollLeft()} className='position-absolute flechaUp' alt='MOREN' src={flecha} style={{ width: '2rem', height: '2rem', left: '25%', cursor: 'pointer', top: '-6%', }}></img>
+            <img onClick={() => this._scrollLeft()} className='position-absolute flechaUp' alt='MOREN' src={flecha} style={{ width: '2rem', height: '2rem', left: '25%', cursor: 'pointer', top: '5%', zIndex: 50, }}></img>
             // </div>
         )
     }
