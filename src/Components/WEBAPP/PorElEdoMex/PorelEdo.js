@@ -10,11 +10,21 @@ import YouTube from "react-youtube";
 import Footer from "../Footer/Footer";
 
 export class PorElEdoMex extends Component {
+
+  state = {
+    video: ''
+  }
+
   componentDidMount = () => {
     fetch(`http://laravel.danielserrano.com.mx/public/api/edomex`)
       .then(response => response.json())
       .then(responseJSON => {
-        console.log(responseJSON)
+        // console.log(responseJSON.Edomex)
+        this.setState({
+          video: responseJSON.Edomex[responseJSON.Edomex.length - 1]
+        })
+        // console.log(responseJSON.Edomex.length)
+        // console.log(responseJSON.Edomex[responseJSON.Edomex.length - 1])
       })
     // $(".navbar_morena").addClass("nvocolor_rojo");
     // $(".navbar_morena img").attr("src", logoRojo);
@@ -40,7 +50,7 @@ export class PorElEdoMex extends Component {
           <YouTube
             className="h-100 w-100"
             opts={opts}
-            videoId="7SoYXlIZ7vU"
+            videoId={this.state.video !== '' ? (this.state.video.video_one.split('v=')[1].split('&t')[0]) : ('7SoYXlIZ7vU')}
             containerClassName="h-100 w-100 position-absolute"
             onReady={this._onReady}
             onEnd={this._onReady}

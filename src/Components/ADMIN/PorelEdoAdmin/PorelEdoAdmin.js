@@ -18,7 +18,11 @@ export class PorelEdoAdmin extends Component {
         militanciaData: [],
         distritosData: [],
         distritosImgData: [],
-        loader: false
+        loader: false,
+        porElEdo: '',
+        imgHomeDistrito: '',
+        portadaDist: '',
+        portadaId: ''
     }
 
     componentDidMount() {
@@ -71,6 +75,37 @@ export class PorelEdoAdmin extends Component {
 
         this._getImgList();
 
+    }
+
+    _sendVideoEdo = () => {
+        if (this.state.porElEdo !== '') {
+            if (this.state.porElEdo.includes('youtube')) {
+                fetch('http://laravel.danielserrano.com.mx/public/api/edomex/create', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        "token": localStorage.getItem('token'),
+                        "video_one": this.state.porElEdo,
+                        "status": "1"
+                    })
+                })
+                    .then(response => response.json())
+                    .then(responseJSON => {
+                        console.log(responseJSON)
+                        this.setState({
+                            porElEdo: ''
+                        })
+                        alert('Registro creado.')
+                    })
+                    .catch(err => {
+                        alert('Intentar más tarde.');
+                        console.log(err)
+                    })
+            } else {
+                alert('El video debe de ser de youtube.')
+            }
+        } else {
+            alert('Llenar el campo.');
+        }
     }
 
     _getPueblo = () => {
@@ -218,6 +253,11 @@ export class PorelEdoAdmin extends Component {
                 case 3:
                     esto.setState({
                         imgDistrito: reader.result
+                    })
+                    break;
+                case 4:
+                    esto.setState({
+                        portadaDist: reader.result
                     })
                     break;
 
@@ -419,6 +459,42 @@ export class PorelEdoAdmin extends Component {
 
     }
 
+    _imgPortadaDis = () => {
+        if (this.state.portadaId !== '' && this.state.portadaDist !== '') {
+            this.setState({
+                loader: true
+            })
+            // console.log(this.state.portadaId.split(',')[0])
+            fetch(`http://laravel.danielserrano.com.mx/public/api/distritos/update/${this.state.portadaId.split(',')[0]}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    "img_one": this.state.portadaDist.split('base64,')[1],
+                    'token': localStorage.getItem('token')
+                    // "status": "1"
+                })
+            })
+                .then(response => response.json())
+                .then(responseJSON => {
+                    console.log(responseJSON);
+                    this.setState({
+                        loader: false,
+                        portadaId: '',
+                        portadaDist: ''
+                    })
+                    alert('Registro Creado.')
+                })
+                .catch(err => {
+                    console.log(err);
+                    this.setState({
+                        loader: false
+                    })
+                    alert('Intentar más tarde')
+                })
+        } else {
+            alert('Llenar todos los datos.');
+        }
+    }
+
     render() {
         return (
             <div className='container-fluid position-relative px-0 overflow-hidden'>
@@ -432,7 +508,19 @@ export class PorelEdoAdmin extends Component {
                     <div className='col-md-6 col-10' style={{ boxShadow: '0px 0px 5px 0px gray', paddingBottom: '1rem' }}>
                         <div className='row mt-5'>
                             <div className='col-12'>
-                                <div className='h2 mt-5' style={{ color: '#941725' }}>Pueblo Organizado</div>
+                                <div className='h2 mt-5' style={{ color: '#941725' }}>Por el Edomex</div>
+                                <input placeholder='Pega el video de youtube.' className='form-control' value={this.state.porElEdo} onChange={(event) => this.setState({ porElEdo: event.target.value })} type='text'></input>
+                            </div>
+                        </div>
+                        <div className='row mt-3'>
+                            <div className='col-12' style={{ justifyContent: 'center', display: 'flex', }}>
+                                <div onClick={() => this._sendVideoEdo()} className='btn btn-danger' style={{ cursor: 'pointer' }}>Guardar</div>
+                            </div>
+                        </div>
+                        <hr></hr>
+                        <div className='row mt-1'>
+                            <div className='col-12'>
+                                <div className='h2 mt-1' style={{ color: '#941725' }}>Pueblo Organizado</div>
                                 <label htmlFor='img1' className='w-100'>
                                     <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgPueblo !== '' ? (this.state.imgPueblo) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain', backgroundColor: 'white', }}>
                                         {this.state.imgPueblo === '' ? (
@@ -449,7 +537,7 @@ export class PorelEdoAdmin extends Component {
                             </div>
                         </div>
 
-                        <div className='row mt-3'>
+                        <div className='row mt-3 mb-4'>
                             {this.state.puebloData.length > 0 ? (
                                 this.state.puebloData.map(pueblo =>
                                     pueblo.status === 1 ? (
@@ -460,7 +548,7 @@ export class PorelEdoAdmin extends Component {
                                 )
                             ) : (null)}
                         </div>
-
+                        <hr></hr>
                         <div className='row mt-2'>
                             <div className='col-12'>
                                 <div className='h2 mt-5' style={{ color: '#941725' }}>Con la Militancia</div>
@@ -480,7 +568,7 @@ export class PorelEdoAdmin extends Component {
                             </div>
                         </div>
 
-                        <div className='row mt-3'>
+                        <div className='row mt-3 mb-4'>
                             {this.state.militanciaData.length > 0 ? (
                                 this.state.militanciaData.map(militancia =>
                                     militancia.status === 1 ? (
@@ -491,10 +579,10 @@ export class PorelEdoAdmin extends Component {
                                 )
                             ) : (null)}
                         </div>
-
+                        <hr></hr>
                         <div className='row mt-2'>
                             <div className='col-12'>
-                                <div className='h2 mt-5' style={{ color: '#941725' }}>Distritos</div>
+                                <div className='h2 mt-3' style={{ color: '#941725' }}>Distritos</div>
                                 <div className='col-12 mt-3 h4'>
                                     Distrito
                                         <select className='form-control' onChange={(event) => this.setState({ distritoId: event.target.value })}>
@@ -553,7 +641,7 @@ export class PorelEdoAdmin extends Component {
                             ) : (null)}
                         </div>
 
-                        <hr />
+                        {/* <hr /> */}
 
                         <div className='row mt-3'>
                             {this.state.distritosImgData.length > 0 ? (
@@ -566,6 +654,36 @@ export class PorelEdoAdmin extends Component {
                                     ) : (null)
                                 )
                             ) : (null)}
+                        </div>
+                        <hr></hr>
+
+                        <div className='row mt-1'>
+                            <div className='col-12'>
+                                <div className='h2 mt-1' style={{ color: '#941725' }}>Portadas Distritos</div>
+                                <select className='form-control mb-2' value={this.state.portadaId} onChange={(event) => this.setState({ portadaId: event.target.value })}>
+                                    <option value='0'>Selecciona una opción</option>
+                                    {this.state.distritosList.length !== undefined ? (
+                                        this.state.distritosList.map(distrito =>
+                                            distrito.status === 1 ? (
+                                                <option key={distrito.id} value={`${distrito.id},${distrito.numero}`}> Dtto. {distrito.numero} {distrito.title}</option>
+                                            ) : (null)
+                                        )
+                                    ) : (null)}
+                                </select>
+                                <label htmlFor='imgDis' className='w-100'>
+                                    <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.portadaDist !== '' ? (this.state.portadaDist) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain', backgroundColor: 'white', }}>
+                                        {this.state.portadaDist === '' ? (
+                                            'Selecciona una imagen'
+                                        ) : (null)}
+                                    </div>
+                                </label>
+                                <input id='imgDis' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 4)} type='file' accept="image/*"></input>
+                            </div>
+                        </div>
+                        <div className='row'>
+                            <div className='col-12' style={{ justifyContent: 'center', display: 'flex', }}>
+                                <div onClick={() => this._imgPortadaDis()} className='btn btn-danger' style={{ cursor: 'pointer' }}>Guardar</div>
+                            </div>
                         </div>
                     </div>
                 </div>

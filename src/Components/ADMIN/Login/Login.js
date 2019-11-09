@@ -44,9 +44,7 @@ export class Login extends Component {
 
   render() {
     return (
-      <div
-        style={{ width: "100vw", height: "100vh", backgroundColor: "black" }}
-      >
+      <div style={{ width: "100vw", height: "100vh", backgroundColor: "black" }} >
         <div
           style={{
             width: "100%",
@@ -78,28 +76,10 @@ export class Login extends Component {
             }}
           >
             <label style={{ placeSelf: "flex-start" }}>Usuario</label>
-            <input
-              onChange={event => this.setState({ user: event.target.value })}
-              type="text"
-              className="form-control mb-3"
-            ></input>
+            <input onChange={event => this.setState({ user: event.target.value })} type="text" className="form-control mb-3" ></input>
             <label style={{ placeSelf: "flex-start" }}>Contraseña</label>
-            <input
-              onChange={event => this.setState({ pass: event.target.value })}
-              type="password"
-              className="form-control mb-3"
-            ></input>
-            <div
-              className="p-3 bg-danger form-control w-25"
-              style={{
-                cursor: "pointer",
-                color: "white",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-              onClick={() => this._login()}
-            >
+            <input onKeyDown={event => event.keyCode === 13 ? (this._login()) : (null)} onChange={event => this.setState({ pass: event.target.value })} type="password" className="form-control mb-3" ></input>
+            <div className="p-3 bg-danger form-control w-25" style={{ cursor: "pointer", color: "white", display: "flex", justifyContent: "center", alignItems: "center" }} onClick={() => this._login()}>
               Entrar
             </div>
           </div>

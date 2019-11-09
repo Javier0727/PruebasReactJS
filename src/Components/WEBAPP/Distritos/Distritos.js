@@ -26,7 +26,7 @@ class Distritos extends Component {
     fetch("http://laravel.danielserrano.com.mx/public/api/distritos/collection/list")
       .then(response => response.json())
       .then(responseJSON => {
-        console.log(responseJSON)
+        // console.log(responseJSON)
         this.setState({
           distritosData: responseJSON.collection
         })
@@ -50,8 +50,8 @@ class Distritos extends Component {
                   distrito.collection ? (
                     <div key={distrito.id} className="col-12 col-md-4 px-3 mt-3">
                       <div onClick={() => this.props.history.push(`/edomex/distritos/${distrito.id}`)} className="bg-dark" style={{ height: "13rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }} >
-                        <img className='w-100 h-100' alt='MORENA' onError={(event) => event.target.src = DS} src={DS} />
-                        <div style={{ position: 'absolute', color: 'white' }}>{distrito.title}</div>
+                        <img className='w-100 h-100' alt='MORENA' onError={(event) => event.target.src = DS} src={distrito.img_one != null ? (distrito.img_one) : (DS)} />
+                        <div style={{ position: 'absolute', color: 'white' }}>Dtto. {distrito.numero} {distrito.title}</div>
                       </div>
                     </div>
                   ) : (null)

@@ -12,7 +12,8 @@ import youtubeR from "../../../resources/youtube_rojo.png";
 
 class DetalleD extends Component {
   state = {
-    distritosData: {}
+    distritosData: {},
+    dataFull: []
   }
 
   componentDidMount = () => {
@@ -28,9 +29,15 @@ class DetalleD extends Component {
     fetch("http://laravel.danielserrano.com.mx/public/api/distritos/collection/list")
       .then(response => response.json())
       .then(responseJSON => {
-        console.log(responseJSON)
-        this.setState({
-          distritosData: responseJSON.collection
+        console.log(responseJSON.collection)
+        responseJSON.collection.map(data => {
+          if (data.id == this.props.match.params.id) {
+            this.setState({
+              distritosData: responseJSON.collection,
+              dataFull: data
+            })
+
+          }
         })
       })
   };
@@ -54,7 +61,9 @@ class DetalleD extends Component {
         <div style={{ paddingTop: "7%" }} className="px-5">
           <div style={{ justifyContent: "center" }} className="row mx-0 mb-4">
             <div className="col-12 px-0">
-              <h1 className="morena_red">PUEBLO ORGANIZADO</h1>
+              <h1 className="morena_red">
+                Dtto. {this.state.dataFull.numero} {this.state.dataFull.title}
+              </h1>
             </div>
             {this.state.distritosData.length != undefined ? (
               this.state.distritosData.map(distrito =>
