@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import NavbarAdmin from '../NavbarAdmin/NavbarAdmin';
 import Logout from '../Logout/Logout';
 import UserControlBtn from '../UserControl/UserControlBtn';
+import { Editor } from '@tinymce/tinymce-react';
 
 export class BlogAdmin extends Component {
 
     state = {
         videoYT: '',
-        blogData: []
+        blogData: [],
+        blogText: '',
+        blogTipo: 1
     }
 
     componentDidMount() {
@@ -56,46 +59,121 @@ export class BlogAdmin extends Component {
     }
 
     _create = () => {
-        if (this.state.videoYT !== '' && this.state.videoYT.includes("youtube")) {
-            fetch('http://laravel.danielserrano.com.mx/public/api/blog/create', {
-                method: 'POST',
-                body: JSON.stringify({
-                    "video_one": this.state.videoYT,
-                    "status": "1",
-                    "token": localStorage.getItem('token'),
+
+        if (this.state.blogTipo === 1) {
+            if (this.state.videoYT !== '' && this.state.videoYT.includes("youtube")) {
+                fetch('http://laravel.danielserrano.com.mx/public/api/blog/create', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        "video_one": this.state.videoYT,
+                        "status": "1",
+                        "tipo": 1,
+                        "token": localStorage.getItem('token'),
+                    })
                 })
-            })
-                .then(response => response.json())
-                .then(responseJSON => {
-                    // console.log(responseJSON);
-                    if (responseJSON.status === 'succes') {
-                        this.setState({
-                            videoYT: ''
-                        })
-                        this._getBlogData();
-                        alert("Registro creado.");
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                    alert("Hubo un error, intentarlo más tarde.");
-                })
+                    .then(response => response.json())
+                    .then(responseJSON => {
+                        // console.log(responseJSON);
+                        if (responseJSON.status === 'succes') {
+                            this.setState({
+                                videoYT: ''
+                            })
+                            this._getBlogData();
+                            alert("Registro creado.");
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        alert("Hubo un error, intentarlo más tarde.");
+                    })
+            } else {
+                alert("Llenar correctamente los datos.");
+            }
         } else {
-            alert("Llenar correctamente los datos.");
+            if (this.state.blogText !== '') {
+                fetch('http://laravel.danielserrano.com.mx/public/api/blog/create', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        "content_one": this.state.blogText,
+                        "status": "1",
+                        "tipo": 2,
+                        "token": localStorage.getItem('token'),
+                    })
+                })
+                    .then(response => response.json())
+                    .then(responseJSON => {
+                        // console.log(responseJSON);
+                        if (responseJSON.status === 'succes') {
+                            this._getBlogData();
+                            alert("Registro creado.");
+                            window.location.reload()
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        alert("Hubo un error, intentarlo más tarde.");
+                    })
+            } else {
+                alert("Llenar correctamente los datos.");
+            }
         }
     }
+
+    handleEditorChange = (e) => {
+        this.setState({
+            blogText: JSON.stringify(e.target.getContent())
+        })
+    }
+
     render() {
         return (
             <div className='container-fluid'>
                 <NavbarAdmin></NavbarAdmin>
                 <div className='row mb-5' style={{ justifyContent: 'center' }}>
-                    <div className='col-md-6 col-10' style={{ boxShadow: '0px 0px 5px 0px gray', paddingBottom: '1rem' }}>
+                    <div className='col-md-6 col-10 pt-5' style={{ boxShadow: '0px 0px 5px 0px gray', paddingBottom: '1rem' }}>
                         <div className='row mt-5'>
-                            <div className='col-12 mt-5 h4'>
-                                Enlace del video
-                            <input placeholder='Ingresar enlace de youtube.' value={this.state.videoYT} className='form-control' onChange={(event) => this.setState({ videoYT: event.target.value })} type='text'></input>
+                            <div className='col-12 h4'>
+                                Selecciona el tipo de blog
                             </div>
                         </div>
+
+                        <select className='form-control mt-3 mb-3' onChange={(event) => this.setState({ blogTipo: event.target.value })}>
+                            <option value={1}>VIDEOBLOG</option>
+                            <option value={2}>BLOG ESCRITO</option>
+                        </select>
+                        {this.state.blogTipo == 1 ? (
+                            <div className='row '>
+                                <div className='col-12 h4'>
+                                    Enlace del video
+                                    <input placeholder='Ingresar enlace de youtube.' value={this.state.videoYT} className='form-control' onChange={(event) => this.setState({ videoYT: event.target.value })} type='text'></input>
+                                </div>
+                            </div>
+                        ) : (
+                                <>
+                                    <div className='row mt-5'>
+                                        <div className='col-12 h4'>
+                                            Ingresa el contenido del blog
+                                        </div>
+                                    </div>
+                                    <Editor
+                                        initialValue="<p>This is the initial content of the editor</p>"
+                                        init={{
+                                            height: 300,
+                                            menubar: false,
+                                            plugins: [
+                                                'advlist autolink lists link image charmap print preview anchor',
+                                                'searchreplace visualblocks code fullscreen',
+                                                'insertdatetime media table paste code help wordcount'
+                                            ],
+                                            toolbar:
+                                                'undo redo | formatselect | bold italic backcolor | \
+                                    alignleft aligncenter alignright alignjustify | \
+                                    bullist numlist outdent indent | removeformat'
+                                        }}
+                                        onChange={this.handleEditorChange}
+                                    />
+                                </>
+                            )}
 
                         <div className='row'>
                             <div className='col-12' style={{ justifyContent: 'center', display: 'flex', }}>
@@ -106,9 +184,15 @@ export class BlogAdmin extends Component {
                             {this.state.blogData.length > 0 ? (
                                 this.state.blogData.map(blog =>
                                     blog.status === 1 ? (
-                                        <div onClick={() => this._delete(blog.id)} key={blog.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
-                                            {blog.video_one}
-                                        </div>
+                                        blog.tipo === 1 ? (
+                                            <div onClick={() => this._delete(blog.id)} key={blog.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                                {blog.video_one}
+                                            </div>
+                                        ) : (
+                                                <div dangerouslySetInnerHTML={{ __html: JSON.parse(blog.content_one) }} onClick={() => this._delete(blog.id)} key={blog.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
+                                                    {/* {JSON.parse(blog.content_one)} */}
+                                                </div>
+                                            )
                                     ) : (null)
                                 )
                             ) : (null)}

@@ -29,7 +29,7 @@ class NavbarAdmin extends React.Component {
           <img style={{ width: "5rem" }} src={logoRojo}></img>
         </Link>
         <Link className="px-3" to="/admin/edomex">
-          POR EL EDOMEX
+          POR LA NACIÓN
         </Link>
         <Link className="px-3" to="/admin/noticias">
           NOTICIAS

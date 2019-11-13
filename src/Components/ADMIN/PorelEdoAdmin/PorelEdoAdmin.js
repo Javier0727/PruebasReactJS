@@ -508,7 +508,7 @@ export class PorelEdoAdmin extends Component {
                     <div className='col-md-6 col-10' style={{ boxShadow: '0px 0px 5px 0px gray', paddingBottom: '1rem' }}>
                         <div className='row mt-5'>
                             <div className='col-12'>
-                                <div className='h2 mt-5' style={{ color: '#941725' }}>Por el Edomex</div>
+                                <div className='h2 mt-5' style={{ color: '#941725' }}>Por la nación</div>
                                 <input placeholder='Pega el video de youtube.' className='form-control' value={this.state.porElEdo} onChange={(event) => this.setState({ porElEdo: event.target.value })} type='text'></input>
                             </div>
                         </div>
@@ -520,7 +520,8 @@ export class PorelEdoAdmin extends Component {
                         <hr></hr>
                         <div className='row mt-1'>
                             <div className='col-12'>
-                                <div className='h2 mt-1' style={{ color: '#941725' }}>Pueblo Organizado</div>
+                                <div className='h2 mt-1' style={{ color: '#941725' }}>Por el EdoMex / Con la Militancia</div>
+                                {/* <div className='h2 mt-1' style={{ color: '#941725' }}>Pueblo Organizado</div> */}
                                 <label htmlFor='img1' className='w-100'>
                                     <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgPueblo !== '' ? (this.state.imgPueblo) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain', backgroundColor: 'white', }}>
                                         {this.state.imgPueblo === '' ? (
@@ -549,7 +550,7 @@ export class PorelEdoAdmin extends Component {
                             ) : (null)}
                         </div>
                         <hr></hr>
-                        <div className='row mt-2'>
+                        {/* <div className='row mt-2'>
                             <div className='col-12'>
                                 <div className='h2 mt-5' style={{ color: '#941725' }}>Con la Militancia</div>
                                 <label htmlFor='img2' className='w-100'>
@@ -579,7 +580,7 @@ export class PorelEdoAdmin extends Component {
                                 )
                             ) : (null)}
                         </div>
-                        <hr></hr>
+                        <hr></hr> */}
                         <div className='row mt-2'>
                             <div className='col-12'>
                                 <div className='h2 mt-3' style={{ color: '#941725' }}>Distritos</div>

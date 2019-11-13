@@ -49,7 +49,7 @@ class Distritos extends Component {
                 this.state.distritosData.map(distrito =>
                   distrito.collection ? (
                     <div key={distrito.id} className="col-12 col-md-4 px-3 mt-3">
-                      <div onClick={() => this.props.history.push(`/edomex/distritos/${distrito.id}`)} className="bg-dark" style={{ height: "13rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }} >
+                      <div onClick={() => this.props.history.push(`/nacion/distritos/${distrito.id}`)} className="bg-dark" style={{ height: "13rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }} >
                         <img className='w-100 h-100' alt='MORENA' onError={(event) => event.target.src = DS} src={distrito.img_one != null ? (distrito.img_one) : (DS)} />
                         <div style={{ position: 'absolute', color: 'white' }}>Dtto. {distrito.numero} {distrito.title}</div>
                       </div>

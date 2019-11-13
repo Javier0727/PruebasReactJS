@@ -14,23 +14,30 @@ export class Footer extends Component {
     return (
       <div id="footer_morena" className="w-100" style={{ position: "fixed", bottom: "0", height: "4rem" }}>
         <div className="row mx-0 py-3 h-100">
-          <div className="col-md-2 col-12 h-100" style={{
+          <div className="col-12 h-100" style={{
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
             alignItems: "center"
           }}>
-            <a href='https://www.facebook.com/DanielSerranoP/' target='_blank' className='h-100'>
-              <img style={{ height: "100%", width: "auto", cursor: "pointer" }} alt="DANIEL SERRANO" id="facebookDS" src={facebookB} />
-            </a>
-            <a href='https://twitter.com/daniel_ser' target='_blank' className='h-100'>
-              <img style={{ height: "100%", width: "auto", cursor: "pointer" }} alt="DANIEL SERRANO" id="twitterDS" src={twitterB} />
-            </a>
-            <a href='https://www.instagram.com/danielserranopalacios/' target='_blank' className='h-100'>
-              <img style={{ height: "100%", width: "auto", cursor: "pointer" }} alt="DANIEL SERRANO" id="instaDS" src={instagramB} />
-            </a>
-            <a href='https://www.youtube.com/c/DanielSerranoP' target='_blank' className='h-100'>
-              <img style={{ height: "100%", width: "auto", cursor: "pointer" }} alt="DANIEL SERRANO" id="ytDS" src={youtubeB} />
-            </a>
+            <div className='h-100 w-100 d-flex align-items-center'>
+              <a href='https://www.facebook.com/DanielSerranoP/' target='_blank' className='h-100 mx-2'>
+                <img style={{ height: "100%", width: "auto", cursor: "pointer" }} alt="DANIEL SERRANO" id="facebookDS" src={facebookB} />
+              </a>
+              <a href='https://twitter.com/daniel_ser' target='_blank' className='h-100 mx-2'>
+                <img style={{ height: "100%", width: "auto", cursor: "pointer" }} alt="DANIEL SERRANO" id="twitterDS" src={twitterB} />
+              </a>
+              <a href='https://www.instagram.com/danielserranopalacios/' target='_blank' className='h-100 mx-2'>
+                <img style={{ height: "100%", width: "auto", cursor: "pointer" }} alt="DANIEL SERRANO" id="instaDS" src={instagramB} />
+              </a>
+              <a href='https://www.youtube.com/c/DanielSerranoP' target='_blank' className='h-100 mx-2'>
+                <img style={{ height: "100%", width: "auto", cursor: "pointer" }} alt="DANIEL SERRANO" id="ytDS" src={youtubeB} />
+              </a>
+            </div>
+            <div className='h4'>
+              <a style={{ color: '#941725' }} href='mailto:contacto@danielserrano.com.mx'>
+                Contacto
+              </a>
+            </div>
           </div>
           {/* <div
             className="col-md-10 col-12 h-100 txt-footer"

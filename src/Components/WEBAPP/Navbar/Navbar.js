@@ -102,8 +102,8 @@ class Navbar extends React.Component {
               </Link>
             </li>
             <li className="nav-item m-md-0 m-3">
-              <Link className={`px-3 ${this.state.active === "/edomex" || this.state.active === "/edomex/distritos" || this.state.active === "/edomex/militancia" || this.state.active === "/edomex/pueblo" ? ("navbarActive") : ("")}`} to="/edomex">
-                POR EL EDOMEX
+              <Link className={`px-3 ${this.state.active === "/nacion" || this.state.active === "/nacion/distritos" || this.state.active === "/nacion/militancia" || this.state.active === "/nacion/pueblo" ? ("navbarActive") : ("")}`} to="/nacion">
+                POR LA NACIÓN
               </Link>
             </li>
             <li className="nav-item m-md-0 m-3">
