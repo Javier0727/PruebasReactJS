@@ -34,7 +34,7 @@ export class Footer extends Component {
               </a>
             </div>
             <div className='h4'>
-              <a style={{ color: '#941725' }} href='mailto:contacto@danielserrano.com.mx'>
+              <a id='contacto' style={{ color: 'white' }} href='mailto:contacto@danielserrano.com.mx'>
                 Contacto
               </a>
             </div>

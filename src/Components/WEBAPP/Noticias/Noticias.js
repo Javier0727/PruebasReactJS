@@ -25,7 +25,7 @@ export class Noticias extends Component {
     $("#twitterDS").attr("src", twitterR);
     $("#instaDS").attr("src", instagramR);
     $("#ytDS").attr("src", youtubeR);
-
+    $('#contacto').css('color', '#941725');
     fetch('http://laravel.danielserrano.com.mx/public/api/noticias')
       .then(response => response.json())
       .then(responseJSON => {

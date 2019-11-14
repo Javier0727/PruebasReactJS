@@ -35,7 +35,7 @@ class Blog extends Component {
     $("#twitterDS").attr("src", twitterR);
     $("#instaDS").attr("src", instagramR);
     $("#ytDS").attr("src", youtubeR);
-
+    $('#contacto').css('color', '#941725');
 
     fetch('http://laravel.danielserrano.com.mx/public/api/blog')
       .then(response => response.json())
@@ -148,7 +148,7 @@ class Blog extends Component {
                       {grupo.map(grupoF =>
                         grupoF.tipo === 2 ? (
                           <div key={grupoF.id} className="col-12 col-md-6 px-3 mt-3" >
-                            <div onClick={() => this.setState({ modal: true, id: grupoF.id, blogText: grupoF.content_one, tipo: 2 })} className="bg-dark position-relative" style={{ height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', boxShadow: '0px 0px 5px 0px grey' }} >
+                            <div onClick={() => this.setState({ modal: true, id: grupoF.id, blogText: grupoF.content_one, tipo: 2 })} className="bg-dark position-relative" style={{ backgroundImage: `url(${grupoF.img_one})`, backgroundPosition: 'center', backgroundSize: 'cover', height: "15rem", cursor: "pointer", display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', boxShadow: '0px 0px 5px 0px grey' }} >
                               <div className='position-absolute w-100 h-100 cont-blog'></div>
                             </div>
                           </div>

@@ -16,6 +16,7 @@ export class PorElEdoMex extends Component {
   }
 
   componentDidMount = () => {
+    $('#contacto').parent().css('margin-right', '7%');
     fetch(`http://laravel.danielserrano.com.mx/public/api/edomex`)
       .then(response => response.json())
       .then(responseJSON => {

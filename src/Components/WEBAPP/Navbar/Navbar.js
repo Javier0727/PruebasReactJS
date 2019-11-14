@@ -55,9 +55,13 @@ class Navbar extends React.Component {
           $("#footer_morena").css("background-color", "transparent");
           $("#footer_morena").css("box-shadow", "none");
           $("#menu_navbar").css("color", "white");
+          document.querySelector("#contacto").style.color = 'white';
+          // $("#contacto").css("color", "white !important");
+
 
         } else {
 
+          $("#contacto").css("color", "#941725");
           $("#menu_navbar").css("color", "#941725");
           $("#footer_morena").css("background-color", "#cdcdcd9c");
           $("#footer_morena").css("box-shadow", "0px -2px 7px -3px grey");

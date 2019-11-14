@@ -10,7 +10,8 @@ export class BlogAdmin extends Component {
         videoYT: '',
         blogData: [],
         blogText: '',
-        blogTipo: 1
+        blogTipo: 1,
+        imagen: ''
     }
 
     componentDidMount() {
@@ -90,7 +91,7 @@ export class BlogAdmin extends Component {
                 alert("Llenar correctamente los datos.");
             }
         } else {
-            if (this.state.blogText !== '') {
+            if (this.state.blogText !== '' && this.state.imagen !== '') {
                 fetch('http://laravel.danielserrano.com.mx/public/api/blog/create', {
                     method: 'POST',
                     body: JSON.stringify({
@@ -98,6 +99,7 @@ export class BlogAdmin extends Component {
                         "status": "1",
                         "tipo": 2,
                         "token": localStorage.getItem('token'),
+                        "img_one": this.state.imagen.split('base64,')[1]
                     })
                 })
                     .then(response => response.json())
@@ -123,6 +125,20 @@ export class BlogAdmin extends Component {
         this.setState({
             blogText: JSON.stringify(e.target.getContent())
         })
+    }
+
+    _base64 = (file) => {
+        var esto = this;
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            esto.setState({
+                imagen: reader.result
+            })
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
     }
 
     render() {
@@ -172,6 +188,18 @@ export class BlogAdmin extends Component {
                                         }}
                                         onChange={this.handleEditorChange}
                                     />
+
+                                    <div className='col-12 mt-2'>
+                                        <label htmlFor='img1' className='w-100'>
+                                            <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imagen !== '' ? (this.state.imagen) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain', backgroundColor: 'white' }}>
+                                                {this.state.imagen === '' ? (
+                                                    'Selecciona una imagen'
+                                                ) : (null)}
+                                            </div>
+                                        </label>
+                                        <input id='img1' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0])} type='file' accept="image/*"></input>
+                                    </div>
+
                                 </>
                             )}
 
@@ -189,8 +217,7 @@ export class BlogAdmin extends Component {
                                                 {blog.video_one}
                                             </div>
                                         ) : (
-                                                <div dangerouslySetInnerHTML={{ __html: JSON.parse(blog.content_one) }} onClick={() => this._delete(blog.id)} key={blog.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray' }}>
-                                                    {/* {JSON.parse(blog.content_one)} */}
+                                                <div dangerouslySetInnerHTML={{ __html: JSON.parse(blog.content_one) }} onClick={() => this._delete(blog.id)} key={blog.id} className='col-12 mb-1 delete cursor_pointer' style={{ border: '1px solid gray', maxHeight: '7rem', overflow: 'auto', }}>
                                                 </div>
                                             )
                                     ) : (null)

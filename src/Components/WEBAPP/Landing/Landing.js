@@ -10,6 +10,7 @@ export class Landing extends Component {
     mediaData: {}
   }
   componentDidMount = () => {
+    $('#contacto').parent().css('margin-right', '7%');
     fetch(`http://laravel.danielserrano.com.mx/public/api/home`)
       .then(response => response.json())
       .then(responseJSON => {
@@ -35,7 +36,6 @@ export class Landing extends Component {
 
   };
   _onReady(event) {
-    // console.log(event);
     event.target.playVideo();
     event.target.mute();
   }
@@ -43,12 +43,13 @@ export class Landing extends Component {
     // https://developers.google.com/youtube/player_parameters
     const opts = {
       playerVars: {
+        showinfo: 0,
         autoplay: 1,
         controls: 0,
-        loop: 1
+        loop: 1,
       }
     };
-    console.log(this.state.mediaData.video_home)
+    console.log(opts)
     return (
       <div>
         <Navbar active={true}></Navbar>
@@ -57,12 +58,11 @@ export class Landing extends Component {
 
             <YouTube
               className="h-100 w-100"
-              opts={opts}
-              // videoId="123123"
               videoId={this.state.mediaData.video_home !== null ? (this.state.mediaData.video_home.split("=")[1].split('&')[0]) : ("7SoYXlIZ7vU")}
               containerClassName="h-100 w-100 position-absolute"
               onReady={this._onReady}
               onEnd={this._onReady}
+              opts={opts}
             />
           ) : (null)}
           {/* <video style={{ position: 'absolute' }} className='h-100 w-100' src={vid} autoPlay loop></video> */}

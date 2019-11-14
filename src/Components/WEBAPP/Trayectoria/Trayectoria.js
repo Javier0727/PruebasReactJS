@@ -23,6 +23,7 @@ export default class Trayectoria extends Component {
   componentDidMount = () => {
     $(".navbar_morena").addClass("nvocolor_rojo");
     $(".navbar_morena img").attr("src", logoRojo);
+    $('#contacto').css('color', '#941725');
 
     $("#facebookDS").attr("src", facebookR);
     $("#twitterDS").attr("src", twitterR);
