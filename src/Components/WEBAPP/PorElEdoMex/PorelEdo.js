@@ -58,10 +58,10 @@ export class PorElEdoMex extends Component {
           />
           <div className="w-100 h-100" style={{ position: "absolute", backgroundColor: "#9417259e" }} >
             <div className="ds_logo_trayectoria" style={{ display: "flex", justifyContent: "center", color: "white", flexDirection: "column" }}>
-              <Link to="/nacion/pueblo" className="text-light p-2 txt_edo">
+              <Link to="/nacion/edomex" className="text-light p-2 txt_edo">
                 Por el EdoMex
               </Link>
-              <Link to="/nacion/pueblo" className="text-light p-2 txt_edo">
+              <Link to="/nacion/militancia" className="text-light p-2 txt_edo">
                 Con la militancia
               </Link>
               {/* <Link to="/nacion/militancia" className="text-light p-2 txt_edo">

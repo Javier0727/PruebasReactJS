@@ -157,39 +157,6 @@ export class LandingAdmin extends Component {
                         <div className='col-12'>
                             <input placeholder='Video de youtube que va en landing page.' value={this.state.videoHome} className='form-control' onChange={(event) => this.setState({ videoHome: event.target.value })} type='text'></input>
                         </div>
-                        {/* <div className='col-12 mt-5 h4'>
-                            Video Trayectoria
-                        </div> */}
-                        {/* <div className='col-12'>
-                            <input placeholder='Video de youtube que va en trayectoria.' value={this.state.videoTrayectoria} className='form-control' onChange={(event) => this.setState({ videoTrayectoria: event.target.value })} type='text'></input>
-                        </div> */}
-                        {/* <div className='col-12 mt-5 h4'>
-                            Imagen 1 Trayectoria
-                        </div> */}
-                        {/* <div className='col-12'>
-                            <label htmlFor='img1' className='w-100'>
-                                <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgTrayectoria1 !== '' ? (this.state.imgTrayectoria1) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain' }}>
-                                    {this.state.imgTrayectoria1 === '' ? (
-                                        'Selecciona una imagen'
-                                    ) : (null)}
-                                </div>
-                            </label>
-                            <input id='img1' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 1)} type='file' accept="image/*"></input>
-                        </div> */}
-                        {/* <div className='col-12 mt-5 h4'>
-                            Imagen 2 Trayectoria
-                        </div> */}
-                        {/* <div className='col-12'>
-                            <label htmlFor='img2' className='w-100'>
-                                <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgTrayectoria2 !== '' ? (this.state.imgTrayectoria2) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain' }}>
-                                    {this.state.imgTrayectoria2 === '' ? (
-                                        'Selecciona una imagen'
-                                    ) : (null)}
-                                </div>
-                            </label>
-                            <input id='img2' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 2)} type='file' accept="image/*"></input>
-                        </div> */}
-
                         <div className='row mt-3'>
                             <div className='col-12' style={{ justifyContent: 'center', display: 'flex', }}>
                                 {/* <div onClick={() => this._crearOne()} className='btn btn-danger' style={{ cursor: 'pointer' }}>Guardar</div> */}

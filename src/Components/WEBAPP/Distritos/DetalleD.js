@@ -26,6 +26,9 @@ class DetalleD extends Component {
     $("#instaDS").attr("src", instagramR);
     $("#ytDS").attr("src", youtubeR);
 
+    $('#menu_navbar').css('color', '#941725');
+    $('#contacto').css('color', '#941725');
+
     fetch("http://laravel.danielserrano.com.mx/public/api/distritos/collection/list")
       .then(response => response.json())
       .then(responseJSON => {

@@ -280,3 +280,12 @@ body {
   transition: 500ms;
   color: white;
 }
+
+.btn_morena {
+  background-color: transparent !important;
+  /* border-bottom: 1px solid #941725 !important; */
+  border-width: 0px 0px 1px 0px !important;
+  border-style: solid !important;
+  border-color: #941725 !important;
+  /* border: 0px 0px 1px 0px solid #941725 !important; */
+}

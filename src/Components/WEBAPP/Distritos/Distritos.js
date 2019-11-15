@@ -22,7 +22,8 @@ class Distritos extends Component {
     $("#twitterDS").attr("src", twitterR);
     $("#instaDS").attr("src", instagramR);
     $("#ytDS").attr("src", youtubeR);
-
+    $('#contacto').css('color', '#941725');
+    $('#menu_navbar').css('color', '#941725');
     fetch("http://laravel.danielserrano.com.mx/public/api/distritos/collection/list")
       .then(response => response.json())
       .then(responseJSON => {

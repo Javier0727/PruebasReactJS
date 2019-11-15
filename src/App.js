@@ -24,6 +24,9 @@ import LandingAdmin from "./Components/ADMIN/LandingAdmin/LandingAdmin";
 import PorelEdoAdmin from "./Components/ADMIN/PorelEdoAdmin/PorelEdoAdmin";
 import NoticiasAdmin from "./Components/ADMIN/NoticiasAdmin/NoticiasAdmin";
 import UserControl from "./Components/ADMIN/UserControl/UserControl";
+import Contacto from "./Components/WEBAPP/Contacto/Contacto";
+import ContactoAdmin from "./Components/ADMIN/ContactoAdmin/ContactoAdmin";
+import PuebloDos from "./Components/WEBAPP/Pueblo/PuebloDos";
 
 class App2 extends React.Component {
   state = {
@@ -94,14 +97,17 @@ class App extends React.Component {
         <Route path="/admin/edomex" exact component={PorelEdoAdmin} />
         <Route path="/admin/noticias" exact component={NoticiasAdmin} />
         <Route path="/admin/usuarios" exact component={UserControl} />
+        <Route path="/admin/contacto" exact component={ContactoAdmin} />
 
+        <Route path="/contacto" exact component={Contacto} />
         <Route path="/trayectoria" exact component={Trayectoria} />
         <Route path="/blog" exact component={Blog} />
         <Route exact path="/noticias" component={Noticias} />
         <Route exact path="/nacion" component={PorElEdoMex} />
-        <Route exact path="/nacion/pueblo" component={Pueblo} />
-        <Route exact path="/nacion/pueblo/:id" component={DetalleP} />
-        <Route exact path="/nacion/militancia" component={Militancia} />
+        <Route exact path="/nacion/militancia" component={Pueblo} />
+        <Route exact path="/nacion/edomex" component={PuebloDos} />
+        <Route exact path="/nacion/militancia/:id" component={DetalleP} />
+        {/* <Route exact path="/nacion/militancia" component={Militancia} /> */}
         <Route exact path="/nacion/distritos" component={Distritos} />
         <Route exact path="/nacion/distritos/:id" component={DetalleD} />
         <Route exact path="/" component={Landing} />

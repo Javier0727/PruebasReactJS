@@ -58,7 +58,6 @@ class Navbar extends React.Component {
           document.querySelector("#contacto").style.color = 'white';
           // $("#contacto").css("color", "white !important");
 
-
         } else {
 
           $("#contacto").css("color", "#941725");
@@ -114,6 +113,14 @@ class Navbar extends React.Component {
               <Link className={`px-3 ${this.state.active === "/noticias" ? ("navbarActive") : ("")}`} to="/noticias">
                 NOTICIAS
               </Link>
+            </li>
+            <li className="nav-item m-md-0 m-3">
+              <a className={`px-3 ${this.state.active === "/contacto" ? ("navbarActive") : ("")}`} target='_blank' href="/contacto">
+                CONTACTO
+              </a>
+              {/* <Link className={`px-3 ${this.state.active === "/contacto" ? ("navbarActive") : ("")}`} to="/contacto">
+                CONTACTO
+              </Link> */}
             </li>
           </ul>
         </div>

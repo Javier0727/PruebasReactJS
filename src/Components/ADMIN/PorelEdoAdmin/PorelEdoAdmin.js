@@ -7,6 +7,7 @@ import Loader from '../../../resources/loader.gif';
 export class PorelEdoAdmin extends Component {
     state = {
         imgPueblo: '',
+        imgPuebloDos: '',
         imgMilitancia: '',
         imgDistrito: '',
         distritosList: {},
@@ -15,6 +16,7 @@ export class PorelEdoAdmin extends Component {
         distritoTitulo: '',
         distritoNew: '',
         puebloData: [],
+        puebloDataDos: [],
         militanciaData: [],
         distritosData: [],
         distritosImgData: [],
@@ -27,51 +29,13 @@ export class PorelEdoAdmin extends Component {
 
     componentDidMount() {
 
-        // fetch("http://laravel.danielserrano.com.mx/public/api/pueblo")
-        //     .then(response => response.json())
-        //     .then(responseJSON => {
-        //         console.log(responseJSON)
-        //         this.setState({
-        //             puebloData: responseJSON.Pueblo
-        //         })
-        //     })
-        //     .catch(err => console.log(err));
-
         this._getPueblo();
 
-        // fetch("http://laravel.danielserrano.com.mx/public/api/militancia")
-        //     .then(response => response.json())
-        //     .then(responseJSON => {
-        //         console.log(responseJSON)
-        //         this.setState({
-        //             militanciaData: responseJSON.Militancia
-        //         })
-        //     })
-        //     .catch(err => console.log(err));
+        this._getPuebloDos();
 
         this._getMilitancia();
 
-        // fetch("http://laravel.danielserrano.com.mx/public/api/distritos")
-        //     .then(response => response.json())
-        //     .then(responseJSON => {
-        //         console.log(responseJSON)
-        //         this.setState({
-        //             distritosList: responseJSON.Distritos
-        //         })
-        //     })
-        //     .catch(err => console.log(err));
-
         this._getDistritos();
-
-        // fetch("http://laravel.danielserrano.com.mx/public/api/distritos/img/list")
-        //     .then(response => response.json())
-        //     .then(responseJSON => {
-        //         console.log(responseJSON)
-        //         this.setState({
-        //             distritosImgData: responseJSON.Imgdistritos
-        //         })
-        //     })
-        //     .catch(err => console.log(err));
 
         this._getImgList();
 
@@ -115,6 +79,17 @@ export class PorelEdoAdmin extends Component {
                 // console.log(responseJSON)
                 this.setState({
                     puebloData: responseJSON.Pueblo
+                })
+            })
+            .catch(err => console.log(err));
+    }
+    _getPuebloDos = () => {
+        fetch("http://laravel.danielserrano.com.mx/public/api/pueblodos")
+            .then(response => response.json())
+            .then(responseJSON => {
+                // console.log(responseJSON)
+                this.setState({
+                    puebloDataDos: responseJSON.Pueblodos
                 })
             })
             .catch(err => console.log(err));
@@ -175,6 +150,27 @@ export class PorelEdoAdmin extends Component {
                 alert("Intentar más tarde.")
             });
     }
+
+    _delete1dos = (id) => {
+        fetch(`http://laravel.danielserrano.com.mx/public/api/pueblodos/update/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                "status": "0",
+                "token": localStorage.getItem('token')
+            })
+        })
+            .then((response) => response.json())
+            .then(responseJSON => {
+                // console.log(responseJSON)
+                alert("Registro eliminado correctamente.")
+                this._getPuebloDos();
+                // window.location.reload();
+            })
+            .catch((err) => {
+                alert("Intentar más tarde.")
+            });
+    }
+
     _delete2 = (id) => {
         fetch(`http://laravel.danielserrano.com.mx/public/api/militancia/update/${id}`, {
             method: 'PUT',
@@ -260,6 +256,11 @@ export class PorelEdoAdmin extends Component {
                         portadaDist: reader.result
                     })
                     break;
+                case 5:
+                    esto.setState({
+                        imgPuebloDos: reader.result
+                    })
+                    break;
 
                 default:
                     break;
@@ -306,7 +307,54 @@ export class PorelEdoAdmin extends Component {
                         alert("Usuario no logeado.");
                         this.props.history.push("/admin");
                     }
-                    // console.log(responseJSON)
+                })
+                .catch(err => {
+                    this.setState({
+                        loader: false
+                    })
+                    alert("Intentar más tarde.")
+                    console.log(err)
+                })
+        } else {
+            alert("Llenar todos los datos.")
+        }
+    }
+    _createPuebloDos = () => {
+        if (this.state.imgPuebloDos !== '') {
+            this.setState({
+                loader: true
+            })
+            fetch("http://laravel.danielserrano.com.mx/public/api/pueblodos/create", {
+                method: 'POST',
+                body: JSON.stringify({
+                    "img_one": this.state.imgPuebloDos.split("base64,")[1],
+                    "status": "1",
+                    "token": localStorage.getItem("token")
+                })
+            })
+                .then(response => response.json())
+                .then(responseJSON => {
+                    if (responseJSON.code !== 400) {
+                        if (responseJSON.status === 'succes') {
+                            this.setState({
+                                imgPuebloDos: '',
+                                loader: false
+                            })
+                            this._getPueblo();
+                            alert("Registro creado.");
+                        } else {
+                            this.setState({
+                                loader: false
+                            })
+                            alert("Intentar más tarde.");
+                        }
+                    } else {
+                        this.setState({
+                            loader: false
+                        })
+                        alert("Usuario no logeado.");
+                        this.props.history.push("/admin");
+                    }
                 })
                 .catch(err => {
                     this.setState({
@@ -520,8 +568,37 @@ export class PorelEdoAdmin extends Component {
                         <hr></hr>
                         <div className='row mt-1'>
                             <div className='col-12'>
-                                <div className='h2 mt-1' style={{ color: '#941725' }}>Por el EdoMex / Con la Militancia</div>
-                                {/* <div className='h2 mt-1' style={{ color: '#941725' }}>Pueblo Organizado</div> */}
+                                <div className='h2 mt-1' style={{ color: '#941725' }}>Por el EdoMex</div>
+                                <label htmlFor='img1dos' className='w-100'>
+                                    <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgPuebloDos !== '' ? (this.state.imgPuebloDos) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain', backgroundColor: 'white', }}>
+                                        {this.state.imgPuebloDos === '' ? (
+                                            'Selecciona una imagen'
+                                        ) : (null)}
+                                    </div>
+                                </label>
+                                <input id='img1dos' style={{ display: 'none' }} className='form-control' onChange={(event) => this._base64(event.target.files[0], 5)} type='file' accept="image/*"></input>
+                            </div>
+                        </div>
+                        <div className='row'>
+                            <div className='col-12' style={{ justifyContent: 'center', display: 'flex', }}>
+                                <div onClick={() => this._createPuebloDos()} className='btn btn-danger' style={{ cursor: 'pointer' }}>Guardar</div>
+                            </div>
+                        </div>
+
+                        <div className='row mt-3 mb-4'>
+                            {this.state.puebloDataDos.length > 0 ? (
+                                this.state.puebloDataDos.map(pueblo =>
+                                    pueblo.status === 1 ? (
+                                        <div onClick={() => this._delete1dos(pueblo.id)} key={pueblo.id} className='col-3 d-flex justify-content-center mb-1 delete cursor_pointer' style={{ border: '1px solid gray', minHeight: '3rem' }}>
+                                            <img src={pueblo.img_one} style={{ width: '5rem' }}></img>
+                                        </div>
+                                    ) : (null)
+                                )
+                            ) : (null)}
+                        </div>
+                        <div className='row mt-1'>
+                            <div className='col-12'>
+                                <div className='h2 mt-1' style={{ color: '#941725' }}>Con la Militancia</div>
                                 <label htmlFor='img1' className='w-100'>
                                     <div style={{ cursor: 'pointer', width: '100%', height: '13rem', border: '1px solid #ced4da', borderRadius: '0.25rem', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url(${this.state.imgPueblo !== '' ? (this.state.imgPueblo) : ('')})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'contain', backgroundColor: 'white', }}>
                                         {this.state.imgPueblo === '' ? (

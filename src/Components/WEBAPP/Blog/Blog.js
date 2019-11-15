@@ -36,6 +36,7 @@ class Blog extends Component {
     $("#instaDS").attr("src", instagramR);
     $("#ytDS").attr("src", youtubeR);
     $('#contacto').css('color', '#941725');
+    $('#menu_navbar').css('color', '#941725');
 
     fetch('http://laravel.danielserrano.com.mx/public/api/blog')
       .then(response => response.json())

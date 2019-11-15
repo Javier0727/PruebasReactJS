@@ -10,7 +10,7 @@ import facebookR from "../../../resources/facebook_rojo.png";
 import twitterR from "../../../resources/twitter_rojo.png";
 import instagramR from "../../../resources/instagram_rojo.png";
 import youtubeR from "../../../resources/youtube_rojo.png";
-class Pueblo extends Component {
+class PuebloDos extends Component {
   state = {
     modal: false,
     id: 0,
@@ -29,11 +29,11 @@ class Pueblo extends Component {
     $('#contacto').css('color', '#941725');
 
 
-    fetch('http://laravel.danielserrano.com.mx/public/api/pueblo')
+    fetch('http://laravel.danielserrano.com.mx/public/api/pueblodos')
       .then(response => response.json())
       .then(responseJSON => {
-        console.log(responseJSON.Pueblo)
-        this.setState({ listadoData: responseJSON.Pueblo })
+        console.log(responseJSON.Pueblodos)
+        this.setState({ listadoData: responseJSON.Pueblodos })
       })
   };
   render() {
@@ -55,7 +55,7 @@ class Pueblo extends Component {
         <div style={{ paddingTop: "7%" }} className="px-5">
           <div style={{ justifyContent: "center" }} className="row mx-0 mb-5 pb-5">
             <div className="col-12 px-0">
-              <h1 className="morena_red">CON LA MILITANCIA</h1>
+              <h1 className="morena_red">Por el EdoMex</h1>
               {/* <h1 className="morena_red">PUEBLO ORGANIZADO</h1> */}
             </div>
             {this.state.listadoData.length > 0 ? (
@@ -76,4 +76,4 @@ class Pueblo extends Component {
   }
 }
 
-export default Pueblo;
+export default PuebloDos;

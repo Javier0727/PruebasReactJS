@@ -34,6 +34,9 @@ class NavbarAdmin extends React.Component {
         <Link className="px-3" to="/admin/noticias">
           NOTICIAS
         </Link>
+        <Link className="px-3" to="/admin/contacto">
+          CONTACTO
+        </Link>
       </div>
     );
   }
